@@ -9,7 +9,7 @@ Subagent-Driven Development is first-class for planned multi-task Skillforge wor
 
 Default to an adaptive loop: use implementer plus reviewer/critic loops for meaningful planned tasks, but avoid ceremony for tiny single edits that are better handled by `implement` or `tdd`.
 
-Use `use-skillforge` first when available. Use `lean-coding` for task scope, `tdd` inside implementer instructions where practical, `critique` for design pressure, `review` for code review, and `verification-before-completion` before final completion.
+Use `use-skillforge` first when available. Use `lean-coding` for task scope, `tdd` inside implementer instructions where practical, `critique` for design pressure, `review` for code review, and `verification-before-completion` before final completion. Dispatch the read-only `investigator` agent for fact-finding and the `tester` agent for delegated verification when it keeps the controller's context clean.
 
 Use the role contracts in `agents/` when the current tool host supports named or prompt-driven subagents.
 

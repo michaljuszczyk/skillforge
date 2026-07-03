@@ -24,8 +24,9 @@ Turn known context into a PRD that an implementer can build from. Do not run a l
 3. Prefer product behavior over implementation detail.
 4. Include implementation decisions only when already decided or strongly implied by the repo.
 5. Name assumptions explicitly.
-6. Load `references/prd-template.md` before drafting a PRD body or local markdown file.
-7. Produce the PRD.
+6. Sketch the seams where this feature will be tested. Prefer an existing seam; the ideal number of new seams is one. If a new test seam is needed, name it and confirm with the user.
+7. Load `references/prd-template.md` before drafting a PRD body or local markdown file.
+8. Produce the PRD.
    - If an issue tracker target is provided, publish or prepare for that tracker.
    - If tracker details are missing, write local markdown or present the PRD in the response and ask for the target.
 

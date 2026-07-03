@@ -48,6 +48,12 @@ Do not write production code before the failing test when TDD is practical. Do n
 
 If a phase cannot be implemented as written, stop and surface the mismatch before editing further.
 
+## Behavior Source
+
+Derive expected behavior from the spec, plan, shape, or PRD — never from what the code currently does. If no source of truth determines the correct behavior (the oracle problem), STOP and ask the user; do not encode the current implementation as if it were correct.
+
+Keep the test count optimal: each test catches a distinct regression. Avoid near-duplicate tests that fail together. When useful, summarize in a small table what regression each new test catches and what code change it would detect.
+
 ## Bugs
 
 For bugs, the first test or manual reproduction must fail before the fix. Capture the input or action, expected behavior, actual behavior, and failure output or observed symptom.

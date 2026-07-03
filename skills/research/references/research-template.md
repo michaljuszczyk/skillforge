@@ -91,3 +91,46 @@ When answering a follow-up, append to the same artifact:
 ```
 
 Update existing conclusions only when new evidence invalidates them; otherwise append the follow-up so the research history remains readable.
+
+## Worked Example
+
+```markdown
+# Research: How are per-user records persisted, and where do recipe writes happen?
+
+## Question
+Where should recipe favorites be stored and written, reusing existing patterns?
+
+## Short Answer
+- Per-user data uses join tables with a `user_id` FK (see `follows`).
+- All recipe reads/writes go through `RecipeService`; add favorite methods there.
+- Session user id is available via `getSession(req)`; endpoints already guard on it.
+
+## Findings
+
+### Persistence pattern
+- Finding: existing `follows(user_id, target_id, created_at)` join table with `UNIQUE(user_id, target_id)`.
+- Evidence: `migrations/0004_follows.sql:1`
+- Implication: mirror this exactly for `recipe_favorites`; get idempotency from the unique constraint.
+
+### Service boundary
+- Finding: no direct DB access from routes; everything goes through `RecipeService`.
+- Evidence: `src/services/RecipeService.ts:12`, `src/api/recipes/[id].ts:8`
+- Implication: add `favorite/unfavorite/isFavorited` to `RecipeService`, not the route.
+
+## Relevant Code
+- `src/api/_session.ts:20` - `getSession(req)` returns `{ userId }` or null (401 pattern).
+
+## Existing Tests and Verification
+- Current coverage: `follows.test.ts` covers the analogous toggle.
+- Gaps: none for favorites yet.
+- Test-first opportunity: copy `follows.test.ts` structure for the favorite toggle.
+
+## Risks and Unknowns
+- Optimistic UI needs a rollback on 401/500: resolve in the component during implementation.
+
+## Recommended Plan Inputs
+- Scope: one vertical slice — persist the toggle end-to-end.
+- Files likely touched: migration, `RecipeService.ts`, `favorite.ts` route, `RecipeCard.tsx`.
+- Constraints: signed-in only; unique (user_id, recipe_id).
+- Behavior to test first: toggle persists and is per-user isolated.
+```

@@ -51,6 +51,16 @@ If no issues are found, say that clearly and name any residual risk, such as unr
 
 Use `references/review-rubric.md` for detailed checks, severity definitions, overengineering checks, and examples of good and bad findings.
 
+## Gate Verdict
+
+When review runs as a gate on a completed phase or change — after `implement` or `tdd`, or before merge or handoff — end with one explicit verdict:
+
+- `Approved`: no Critical or Important findings; safe to proceed.
+- `Needs attention`: Important findings that should be fixed but do not block the approach; list them and the shortest path to green.
+- `Rejected`: at least one Critical finding, or spec drift that changes behavior; must fix and re-review.
+
+A phase is not done until review returns `Approved` or the user explicitly accepts the residual risk. State the verdict plainly; do not bury it under commentary.
+
 ## Feedback Intake
 
 When receiving review feedback:

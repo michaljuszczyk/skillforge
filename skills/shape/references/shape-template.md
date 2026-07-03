@@ -78,3 +78,34 @@ Avoid:
 - "Add tests" without naming the behavior to prove.
 - "Refactor module" without naming what must not change.
 - Domain commitments the user did not make.
+
+## Worked Example
+
+```markdown
+# Shape: Save a recipe to favorites
+
+## Current State
+- Repo/project context: Next.js app; recipes served from `RecipeService`; auth via existing session cookie.
+- Existing behavior or starting point: users can view recipes; no way to save them; no favorites table.
+- Known constraints: signed-in users only; anonymous users see a sign-in prompt.
+
+## Desired Change
+- User-visible outcome: a signed-in user can favorite/unfavorite a recipe and see their favorites list.
+- Primary workflow or failure mode: click the heart on a recipe card → it persists → appears under /favorites.
+- Non-goals: sharing favorites, folders/tags, favorites for anonymous users.
+
+## Decisions
+- Store favorites in a new join table `recipe_favorites(user_id, recipe_id, created_at)`: normalized, cheap to query, matches existing schema style.
+
+## Risks
+- Double-submit could create duplicate rows: enforce a unique (user_id, recipe_id) constraint.
+
+## Verification Intent
+- Expected behavior to prove: favoriting persists across reload; unfavoriting removes it; a user sees only their own favorites.
+- Bug reproduction needed: n/a (new feature).
+- Test-first opportunity: yes — toggle behavior and per-user isolation.
+- Manual verification: heart state survives page reload.
+
+## Open Questions
+- Should the favorites list be paginated? (owner: user) — matters only if a user can exceed ~100 favorites.
+```

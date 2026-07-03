@@ -1,0 +1,21 @@
+{
+  "name": "skillforge",
+  "displayName": "Skillforge",
+  "description": "Personal skills library: spec-driven development, lean coding, debugging, verified completion, and always-on skill awareness.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Michal Juszczyk"
+  },
+  "homepage": "https://github.com/michaljuszczyk/skillforge",
+  "repository": "https://github.com/michaljuszczyk/skillforge",
+  "license": "UNLICENSED",
+  "keywords": [
+    "skills",
+    "spec-driven",
+    "lean-coding",
+    "debugging",
+    "workflows"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks-cursor.json"
+}

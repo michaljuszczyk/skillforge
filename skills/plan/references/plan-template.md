@@ -93,3 +93,48 @@ Bad:
 - `Add tests`
 - `Handle edge cases`
 - `Phase 1: Backend; Phase 2: Frontend` when neither phase is independently useful or verifiable.
+
+## Worked Example
+
+```markdown
+# Plan: Save a recipe to favorites
+
+## Goal
+Let a signed-in user toggle a recipe as favorite and view their favorites, persisted per user.
+
+## Context
+- Shape: `context/changes/recipe-favorites/shape.md`
+- Research: `context/changes/recipe-favorites/research.md`
+- Key constraints: signed-in only; unique (user_id, recipe_id); writes go through `RecipeService`.
+
+## Decisions
+- New join table + optimistic UI toggle: keeps reads cheap and the heart responsive.
+
+## Phase 1: Persist favorite toggle end-to-end
+
+### Intent
+A signed-in user can favorite/unfavorite one recipe and the state persists across reload.
+
+### Files
+- Create: `migrations/0007_recipe_favorites.sql` - join table + unique constraint
+- Modify: `src/services/RecipeService.ts` - add favorite/unfavorite/isFavorited
+- Modify: `src/api/recipes/[id]/favorite.ts` - POST/DELETE, session-guarded
+- Modify: `src/components/RecipeCard.tsx` - optimistic heart toggle
+
+### Contracts
+- `POST /api/recipes/:id/favorite` → 200 `{favorited:true}`; `DELETE` → 200 `{favorited:false}`; 401 if signed out.
+- Duplicate favorite is idempotent (unique constraint; upsert).
+
+### Verification
+- Automated: `npm test -- recipe-favorites.test.ts`
+- Manual: favorite a recipe, reload, heart stays filled.
+
+## Progress checklist
+
+### Phase 1: Persist favorite toggle end-to-end
+
+- [ ] 1.1 Write failing test: toggle persists and is per-user isolated
+- [ ] 1.2 Add migration + service methods + endpoints + heart toggle
+- [ ] 1.3 Run `npm test -- recipe-favorites.test.ts`
+- [ ] 1.4 Manual: heart survives reload
+```

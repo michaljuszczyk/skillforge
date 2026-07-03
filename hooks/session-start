@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# SessionStart hook for the skillforge plugin.
+# Injects the use-skillforge gateway at startup and re-injects it after
+# every /clear and context compaction, so skill awareness never decays.
+
+set -euo pipefail
+
+# Determine plugin root directory
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PLUGIN_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
+# Read the use-skillforge gateway content
+gateway_content=$(cat "${PLUGIN_ROOT}/skills/use-skillforge/SKILL.md" 2>&1 || echo "Error reading use-skillforge skill")
+
+# Escape string for JSON embedding using bash parameter substitution.
+# Each ${s//old/new} is a single C-level pass.
+escape_for_json() {
+    local s="$1"
+    s="${s//\\/\\\\}"
+    s="${s//\"/\\\"}"
+    s="${s//$'\n'/\\n}"
+    s="${s//$'\r'/\\r}"
+    s="${s//$'\t'/\\t}"
+    printf '%s' "$s"
+}
+
+gateway_escaped=$(escape_for_json "$gateway_content")
+session_context="<EXTREMELY_IMPORTANT>\nYou are running with Skillforge.\n\n**Below is the full content of your 'use-skillforge' gateway - your introduction to finding and using skills. For all other skills, use the 'Skill' tool or read skills/<name>/SKILL.md:**\n\n${gateway_escaped}\n</EXTREMELY_IMPORTANT>"
+
+# Output context injection as JSON, per platform.
+# Cursor expects additional_context (snake_case).
+# Claude Code expects hookSpecificOutput.additionalContext (nested).
+# Copilot CLI and others expect additionalContext (top-level, SDK standard).
+if [ -n "${CURSOR_PLUGIN_ROOT:-}" ]; then
+  printf '{\n  "additional_context": "%s"\n}\n' "$session_context" | cat
+elif [ -n "${CLAUDE_PLUGIN_ROOT:-}" ] && [ -z "${COPILOT_CLI:-}" ]; then
+  printf '{\n  "hookSpecificOutput": {\n    "hookEventName": "SessionStart",\n    "additionalContext": "%s"\n  }\n}\n' "$session_context" | cat
+else
+  printf '{\n  "additionalContext": "%s"\n}\n' "$session_context" | cat
+fi
+
+exit 0

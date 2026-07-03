@@ -29,7 +29,7 @@ Read these first when present:
 1. Restate the research question in one sentence.
 2. Ask at least one sharp scope, focus, or depth question for nontrivial research. Skip only when the query is tight and factual.
 3. Search broadly, then read narrowly. Prefer `rg`, `rg --files`, repository history, tests, configs, and neighboring implementations.
-4. Use subagents for independent research tracks when available and useful: one for code path discovery, one for tests/contracts, one for history/prior decisions. Ask for file references and evidence, not opinions.
+4. Use subagents for independent research tracks when available and useful: one for code path discovery, one for tests/contracts, one for history/prior decisions. The read-only `investigator` agent fits these tracks when the host supports named subagents. Ask for file references and evidence, not opinions.
 5. Verify important subagent claims yourself against source files before writing conclusions.
 6. If writing, appending to, or reviewing the artifact, follow Reference Loading before doing so.
 7. Capture uncertainty explicitly. Do not turn weak evidence into recommendations.

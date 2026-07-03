@@ -1,17 +1,25 @@
 {
   "name": "skillforge",
-  "version": "0.1.0",
-  "description": "Personal AI coding skills for lean implementation and verified completion.",
+  "version": "1.0.0",
+  "description": "Personal AI coding skills: spec-driven development, lean coding, debugging, verified completion, and always-on skill awareness.",
   "keywords": [
     "skills",
     "pi-package",
-    "ai-coding"
+    "ai-coding",
+    "spec-driven",
+    "debugging"
   ],
   "license": "UNLICENSED",
   "files": [
     "AGENTS.md",
+    "CLAUDE.md",
+    "GEMINI.md",
     "agents/",
-    "skills/"
+    "skills/",
+    "hooks/",
+    ".claude-plugin/",
+    ".cursor-plugin/",
+    ".codex-plugin/"
   ],
   "exports": {
     "./agents/*": "./agents/*",

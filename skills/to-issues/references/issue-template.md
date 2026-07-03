@@ -56,3 +56,42 @@ Ask whether granularity and dependencies are right unless the user requested dir
 - If tracker details are available, publish in dependency order so blockers can be referenced.
 - If tracker details are missing, create or present local markdown and ask for the target.
 - Do not close or mutate parent issues unless explicitly asked.
+
+## Worked Example
+
+Proposed breakdown (two vertical slices, in dependency order):
+
+```markdown
+1. Persist recipe favorite toggle end-to-end - a signed-in user can favorite/unfavorite one recipe; blocked by none; acceptance: toggle persists per user across reload.
+2. Show my favorites list - a user sees only their own favorites, newest first; blocked by #1; acceptance: list shows the user's favorites and excludes others'.
+```
+
+Slice 1 as a full issue body:
+
+```markdown
+# Persist recipe favorite toggle end-to-end
+
+## Parent
+PRD: Recipe favorites
+
+## What To Build
+A signed-in user can favorite/unfavorite one recipe from the recipe card; the state persists per user and survives reload. Includes the migration, service methods, session-guarded endpoints, and the heart toggle.
+
+## Acceptance Criteria
+- [ ] POST /api/recipes/:id/favorite persists a favorite; DELETE removes it; both return the new state.
+- [ ] A signed-out request returns 401.
+- [ ] Favoriting the same recipe twice does not create duplicate rows.
+- [ ] Heart state survives page reload.
+
+## Technical Notes
+- New table `recipe_favorites(user_id, recipe_id, created_at)` with unique (user_id, recipe_id).
+
+## Tests
+- Integration: `recipe-favorites.test.ts` (toggle persists; per-user isolation; idempotent).
+
+## Blocked By
+None
+
+## Out Of Scope
+- Favorites list page (slice #2), sharing, folders.
+```

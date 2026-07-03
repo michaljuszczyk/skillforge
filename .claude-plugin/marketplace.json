@@ -1,0 +1,13 @@
+{
+  "name": "skillforge",
+  "owner": {
+    "name": "Michal Juszczyk"
+  },
+  "plugins": [
+    {
+      "name": "skillforge",
+      "source": ".",
+      "description": "Personal skills library: spec-driven development, lean coding, debugging, verified completion, and always-on skill awareness."
+    }
+  ]
+}

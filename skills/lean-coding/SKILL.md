@@ -35,6 +35,7 @@ Stop at the first rung that solves the real problem:
 - No new dependency for a small local or native solution.
 - Do not simplify away validation, security, data-loss protection, accessibility basics, or explicit requirements.
 - If a shortcut has a known ceiling, note the ceiling and upgrade path in one concise code comment.
+- Ship the lean version and name its ceiling in the same response. Do not stall polishing what already solves the real problem.
 
 ## Output
 

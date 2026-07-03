@@ -27,6 +27,7 @@ Create a compact continuation note in the operating system temp directory. Refer
    - Commands run and meaningful results.
    - Open questions, blockers, and next actions.
    - Relevant artifact paths or URLs.
+   - Suggested skills the next agent should use, and why.
 3. Redact secrets:
    - API keys, tokens, passwords, cookies, private keys, credentials, auth headers.
    - Personal data not needed for the next step.
