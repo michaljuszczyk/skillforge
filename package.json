@@ -1,0 +1,25 @@
+{
+  "name": "skillforge",
+  "version": "0.1.0",
+  "description": "Personal AI coding skills for lean implementation and verified completion.",
+  "keywords": [
+    "skills",
+    "pi-package",
+    "ai-coding"
+  ],
+  "license": "UNLICENSED",
+  "files": [
+    "AGENTS.md",
+    "agents/",
+    "skills/"
+  ],
+  "exports": {
+    "./agents/*": "./agents/*",
+    "./skills/*": "./skills/*"
+  },
+  "pi": {
+    "skills": [
+      "./skills"
+    ]
+  }
+}
