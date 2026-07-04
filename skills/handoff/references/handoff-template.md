@@ -64,3 +64,40 @@ Before reporting the path:
 - Relevant artifacts are linked or named instead of pasted.
 - Secrets and unnecessary personal data are redacted.
 - The handoff does not claim completion unless fresh verification supports it.
+
+## Worked Example
+
+```markdown
+# Handoff: recipe favorites — persist toggle
+
+## Goal
+Ship the favorite/unfavorite toggle for signed-in users, persisted per user.
+
+## Current State
+Phase 1 done and reviewed (Approved). Favorites list (phase 2) not started.
+
+## Decisions And Constraints
+- Join table recipe_favorites(user_id, recipe_id, created_at), unique (user_id, recipe_id).
+- Optimistic UI toggle with rollback on a non-200 response.
+
+## Artifacts
+- context/changes/recipe-favorites/plan.md: phases + progress checklist.
+- context/foundation/roadmap.md: this change's Status is now done.
+
+## Changed Or Relevant Paths
+- migrations/0007_recipe_favorites.sql: added.
+- src/services/RecipeService.ts: favorite / unfavorite / isFavorited.
+
+## Verification
+- `npm test -- recipe-favorites.test.ts`: 6 passing.
+
+## Next Actions
+1. Start the favorites-list change: `plan favorites-list`.
+
+## Open Questions
+- Pagination for >100 favorites? (owner: user)
+
+## Suggested Skills
+- plan: to plan the favorites-list change.
+- tdd: toggle and list behavior are test-first friendly.
+```

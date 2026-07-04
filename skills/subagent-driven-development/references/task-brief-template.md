@@ -78,3 +78,42 @@ Fixers address the complete finding set for that task when practical. Avoid one 
 ## Context Hygiene
 
 Prefer handoff files over pasted history when the host supports it. Keep durable scratch files under the change folder. Do not make a subagent read the whole plan when a task-local brief is enough.
+
+## Worked Example
+
+A filled implementer brief for one task:
+
+```text
+You are implementing 1.1: persist the recipe favorite toggle.
+
+Read first:
+- Task brief: /tmp/skillforge/recipe-favorites/task-1-brief.md
+- Relevant research: context/changes/recipe-favorites/research.md
+
+Goal:
+A signed-in user can favorite/unfavorite one recipe and it persists across reload.
+
+Scope:
+- Own these paths: migrations/0007_recipe_favorites.sql, src/services/RecipeService.ts, src/api/recipes/[id]/favorite.ts
+- Do not touch: src/components/** (UI is a later task)
+
+Requirements:
+- POST /api/recipes/:id/favorite → 200 {favorited:true}; DELETE → 200 {favorited:false}; 401 if signed out.
+- Unique (user_id, recipe_id); a duplicate favorite is idempotent.
+
+Constraints:
+- Follow existing repo patterns.
+- Use TDD; reproduce any bug before fixing.
+- Do not stage or commit unless the controller asks.
+
+Verification:
+- Run: npm test -- recipe-favorites.test.ts
+
+Report file:
+Write the full report to /tmp/skillforge/recipe-favorites/task-1-report.md.
+
+Report contract:
+- Status; what changed; files changed; verification command and result; RED/GREEN evidence; concerns.
+
+Return only: status, one-line verification summary, files changed, concerns, report path.
+```

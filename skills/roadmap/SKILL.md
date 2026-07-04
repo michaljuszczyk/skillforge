@@ -35,7 +35,7 @@ Roadmap writes `context/foundation/roadmap.md` (durable, edit-in-place). Read fi
 End with:
 
 - Current state: roadmap path, change count, north star, first `ready` change.
-- Recommended next command: `stack` if greenfield and no `tech-stack.md` exists, otherwise `plan <change-id>` for the first ready change.
+- Recommended next command: `plan <change-id>` for the first ready change. (Greenfield runs `stack` before roadmap, not after.)
 - Reminder: when a change completes, flip its Status to `done` in the roadmap.
 - Copyable command block.
 

@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: Use to implement a planned feature or bug fix test-first with red, green, refactor. Triggers when the user says TDD, test-first, red-green-refactor, reproduce before fix, or wants expected behavior pinned before implementation.
+description: Use to implement a planned feature or bug fix test-first with red, green, refactor. Triggers when the user says TDD, test-first, red-green-refactor, or wants expected behavior pinned before implementation.
 ---
 
 # TDD
@@ -60,4 +60,4 @@ For bugs, the first test or manual reproduction must fail before the fix. Captur
 
 ## Handoff
 
-End each TDD phase or pause with current state, recommended next command, optional alternatives, and a copyable command block. Use `implement <change-id> phase <n>` for non-TDD work, `tdd <change-id> phase <n>` for the next test-first phase, or `review` for a completed phase.
+End each TDD phase or pause with current state, recommended next command, optional alternatives, and a copyable command block. Use `implement <change-id> phase <n>` for non-TDD work, `tdd <change-id> phase <n>` for the next test-first phase, or `review` for a completed phase. When the whole change is complete and reviewed, flip its Status to `done` in `context/foundation/roadmap.md` if it came from a roadmap.

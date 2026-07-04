@@ -1,6 +1,6 @@
 ---
 name: lean-coding
-description: Use for coding, fixing, refactoring, reviewing, or dependency decisions to keep changes minimal, reused, native, and justified.
+description: Use for coding, fixing, refactoring, or dependency decisions to keep changes minimal, reused, native, and justified.
 ---
 
 # Lean Coding

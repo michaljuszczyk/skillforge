@@ -43,7 +43,7 @@ If the plan and code disagree in a way that affects behavior, scope, or safety, 
 
 Do not claim a phase is complete until its relevant checklist rows are checked, automated verification passed or is clearly documented, manual verification is confirmed or left pending, and unrelated user edits were not overwritten.
 
-When all checklist rows are checked, recommend `review` before archive or release.
+When all checklist rows are checked, recommend `review` before archive or release. If this change came from a roadmap, flip its Status to `done` in `context/foundation/roadmap.md` after review passes.
 
 ## Handoff
 

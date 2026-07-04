@@ -20,7 +20,7 @@ Skillforge state is artifact-driven:
 - Foundation context lives in `context/foundation/`.
 - Change work lives in `context/changes/<change-id>/`.
 - Shape writes `context/changes/<change-id>/shape.md`.
-- If the request is project-wide discovery with no change yet, write `context/foundation/shape.md` and hand off to `plan` only after a change-id exists.
+- If the request is project-wide or multi-change discovery, write `context/foundation/shape.md` and hand off to `roadmap`, which mints the change-ids.
 
 If `context/` is missing, create only the needed directories. Do not create README files or extra docs.
 

@@ -48,7 +48,7 @@ Do not use it when the next change is a tiny single edit, the plan is missing, o
 7. If review finds blocking issues, dispatch a fixer or send the task back, then re-review.
 8. Only after review passes, flip the relevant row(s) in `## Progress checklist`.
 9. Continue from the first unchecked item until done or blocked.
-10. When every checklist row is checked, conclude development: dispatch a final whole-change `review` gate, and `critique` if architecture or contracts changed. If it returns findings, dispatch a fix fragment and re-review. Development concludes only when the final review returns `Approved` or the user accepts the residual risk.
+10. When every checklist row is checked, conclude development: dispatch a final whole-change `review` gate, and `critique` if architecture or contracts changed. If it returns findings, dispatch a fix fragment and re-review. Development concludes only when the final review returns `Approved` or the user accepts the residual risk. Once it does, flip this change's Status to `done` in `context/foundation/roadmap.md` if it came from a roadmap.
 
 The controller adjudicates conflicts between reviewer findings and plan text. Do not dismiss a finding because the plan implied it; ask the user when the plan itself appears wrong.
 

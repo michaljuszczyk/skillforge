@@ -25,7 +25,7 @@ Skills split into a coherent **main flow** and standalone **addons**.
 ### The flow
 
 ```
-big / greenfield:  shape → to-prd → stack → roadmap(+de-risk) → plan <id> → implement/tdd/sdd → review
+big / greenfield:  shape → (to-prd) → stack → roadmap(+de-risk) → plan <id> → implement/tdd/sdd → review   ( ) = optional addon
 big / brownfield:  shape → roadmap(+de-risk) → plan <id> → …
 small change:      shape → plan → build            (roadmap/stack skipped)
 ```

@@ -22,10 +22,11 @@ Write `context/changes/<change-id>/plan.md`. The `## Progress checklist` section
 Read, in order:
 
 1. User-provided task or ticket.
-2. `context/changes/<change-id>/shape.md`, if present.
-3. `context/changes/<change-id>/research.md`, if present.
-4. Related foundation docs in `context/foundation/`.
-5. Existing `plan.md`, if revising or resuming.
+2. The change's entry in `context/foundation/roadmap.md` (Outcome, Depends on, Source refs, Risks), if it came from a roadmap.
+3. `context/changes/<change-id>/shape.md`, if present.
+4. `context/changes/<change-id>/research.md`, if present.
+5. Related foundation docs in `context/foundation/`.
+6. Existing `plan.md`, if revising or resuming.
 
 Do not re-ask decisions already answered in upstream artifacts.
 
@@ -60,5 +61,4 @@ End with:
 - Current state: plan path, phase count, first unchecked item.
 - Recommended next command: `subagent-driven-development <change-id>` for multi-task planned work, `tdd <change-id>` for test-first eligible behavior, or `implement <change-id>` for direct execution.
 - Optional alternatives: `critique context/changes/<change-id>/plan.md` or `review context/changes/<change-id>/plan.md`.
-- If this change came from a roadmap, flip its Status to `done` in `context/foundation/roadmap.md` once the work is complete and reviewed.
 - Copyable command block.

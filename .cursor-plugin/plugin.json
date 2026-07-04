@@ -2,7 +2,7 @@
   "name": "skillforge",
   "displayName": "Skillforge",
   "description": "Personal skills library: spec-driven development, lean coding, debugging, verified completion, and always-on skill awareness.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": {
     "name": "Michal Juszczyk"
   },

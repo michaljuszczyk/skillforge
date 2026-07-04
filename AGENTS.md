@@ -8,7 +8,7 @@ If there is even a 1% chance a skill applies to what you are about to do, invoke
 
 ## Routing
 
-- Coding, fixing, refactoring, reviewing, dependency choice → `lean-coding`.
+- Coding, fixing, refactoring, or dependency choice → `lean-coding`.
 - Big change, epic, or new project (multi-change) → `roadmap`, then per-change `plan <id>`. Small single changes skip it.
 - Choosing or recording a tech stack → `stack` (optional, before `roadmap`).
 - Unclear or unshaped work → `shape` → `research` → `plan`.
@@ -18,6 +18,7 @@ If there is even a 1% chance a skill applies to what you are about to do, invoke
 - Reviewing code or a completed phase → `review`.
 - Authoring or harvesting a skill → `writing-skills`.
 - Any done / fixed / passing / commit / PR claim → `verification-before-completion`; evidence before status.
+- Addon skills (standalone, on request; not part of the flow): `to-prd`, `to-issues`, `critique` / `grill`, `handoff`, `writing-skills`.
 
 ## Always
 
