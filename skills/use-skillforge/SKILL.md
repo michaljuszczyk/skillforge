@@ -52,14 +52,18 @@ These thoughts mean STOP — you are rationalizing:
 2. Select the smallest relevant skill set. Process skills before execution skills.
 3. Follow the selected skill exactly, unless direct user or repository instructions conflict.
 
-Routing:
+Routing (main flow):
 
+- Big change, epic, or new project (multi-change) → `roadmap` first, then per-change `plan <id>`. A single small change skips this: `shape` → `plan`.
+- Choosing or recording a tech stack → `stack` (before `roadmap`; optional, never a gate).
 - Shape/scope unclear work → `shape`, then `research`, then `plan`.
-- Execute a plan → `implement`, `tdd`, or `subagent-driven-development`.
+- Execute a plan → `implement` or `tdd` directly, or `subagent-driven-development` to orchestrate fragmented multi-task work.
+- Splitting any work across subagents (research, planning, bulk edits, review) → `delegating`.
 - Diagnose a bug or failure → `debugging`.
-- Challenge a plan → `critique` (interactive: `grill`).
-- Review code, a diff, or a completed phase → `review`.
-- Author or harvest a skill → `writing-skills`.
+- Review a completed phase or change → `review`.
+
+Addon skills (standalone; use on request, do not force into the flow): `to-prd`, `to-issues`, `critique` (interactive: `grill`), `handoff`, `writing-skills`.
+
 - Unsure whether any skill applies → run this skill, then decide.
 
 ## Boundaries

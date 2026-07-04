@@ -43,6 +43,6 @@ The artifact must be concrete enough that `research` can investigate unknowns or
 Every response that completes or pauses a phase ends with:
 
 - Current state: artifact written or updated, unresolved questions, confidence.
-- Recommended next command: normally `research <change-id>` for codebase unknowns or `plan <change-id>` when context is sufficient.
+- Recommended next command: `roadmap` for a big or multi-change initiative; otherwise `research <change-id>` for codebase unknowns or `plan <change-id>` when context is sufficient.
 - Optional alternatives: `critique` for a framing challenge, `review` for existing proposal review, or stop if the shape is intentionally exploratory.
 - Copyable command block.

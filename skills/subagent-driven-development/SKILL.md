@@ -7,6 +7,8 @@ description: Use to execute a Skillforge plan with fresh implementer and reviewe
 
 Subagent-Driven Development is first-class for planned multi-task Skillforge work. The controller stays in charge of state, dispatches a fresh implementer for each bounded phase or task, then dispatches an independent reviewer or critic before marking progress.
 
+It is a meta-orchestrator, not another execution skill. It does not re-implement coding: each fragment's actual work is done with `implement` or `tdd` inside the implementer's brief. What this skill adds around them is work fragmentation, context isolation, per-task review loops, and the concluding gate.
+
 Default to an adaptive loop: use implementer plus reviewer/critic loops for meaningful planned tasks, but avoid ceremony for tiny single edits that are better handled by `implement` or `tdd`.
 
 Use `use-skillforge` first when available. Use `lean-coding` for task scope, `tdd` inside implementer instructions where practical, `critique` for design pressure, `review` for code review, and `verification-before-completion` before final completion. Dispatch the read-only `investigator` agent for fact-finding and the `tester` agent for delegated verification when it keeps the controller's context clean.
@@ -46,8 +48,19 @@ Do not use it when the next change is a tiny single edit, the plan is missing, o
 7. If review finds blocking issues, dispatch a fixer or send the task back, then re-review.
 8. Only after review passes, flip the relevant row(s) in `## Progress checklist`.
 9. Continue from the first unchecked item until done or blocked.
+10. When every checklist row is checked, conclude development: dispatch a final whole-change `review` gate, and `critique` if architecture or contracts changed. If it returns findings, dispatch a fix fragment and re-review. Development concludes only when the final review returns `Approved` or the user accepts the residual risk.
 
 The controller adjudicates conflicts between reviewer findings and plan text. Do not dismiss a finding because the plan implied it; ask the user when the plan itself appears wrong.
+
+## Delegation and Model Selection
+
+Follow `delegating` for the brief contract, model selection, and verification of every subagent — it is the general skill; this section only maps it onto these roles.
+
+- Implementers on mechanical, well-specified tasks (or where the plan already contains the code): cheapest tier.
+- Implementers doing integration or multi-file work, and per-task reviewers: standard tier as the floor.
+- The final whole-change review: the most capable tier, not the session default.
+
+State the model explicitly on every dispatch, or it silently inherits the session's most expensive model.
 
 ## Progress and Resume
 

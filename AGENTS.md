@@ -9,6 +9,8 @@ If there is even a 1% chance a skill applies to what you are about to do, invoke
 ## Routing
 
 - Coding, fixing, refactoring, reviewing, dependency choice → `lean-coding`.
+- Big change, epic, or new project (multi-change) → `roadmap`, then per-change `plan <id>`. Small single changes skip it.
+- Choosing or recording a tech stack → `stack` (optional, before `roadmap`).
 - Unclear or unshaped work → `shape` → `research` → `plan`.
 - Executing a plan → `implement`, `tdd`, or `subagent-driven-development`.
 - A bug or failure to diagnose → `debugging` before any fix.
@@ -21,4 +23,4 @@ If there is even a 1% chance a skill applies to what you are about to do, invoke
 
 - Output is short and high-signal — use `lean-output`. Use normal, careful clarity for destructive actions, security, commits, PRs, and anything where terse wording could be misread.
 - Git safety: never revert or overwrite user or peer edits. Own only the paths assigned for the task, inspect before editing, leave unrelated changes alone. Never stage or commit unless the user asks.
-- Subagents: delegate only narrow, isolated work with explicit path ownership and required skills. Verify their output yourself before relying on it.
+- Subagents: delegate only narrow, isolated work with explicit path ownership and required skills. Verify their output yourself before relying on it. See `delegating` for how to brief, size, and verify them in any phase.

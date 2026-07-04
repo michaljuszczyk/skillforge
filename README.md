@@ -4,21 +4,31 @@ A personal, opinionated skills library for AI coding agents. Spec-driven, lean, 
 
 ## What's inside
 
+Skills split into a coherent **main flow** and standalone **addons**.
+
 **Gateway (always-on)**
 - `use-skillforge` — forces a skill check before any action; injected every session and after every compaction.
 
-**Process** — `shape` → `research` → `plan`
-Artifact chain under `context/changes/<change-id>/`; the plan's `## Progress checklist` is durable execution state.
+**Main flow** — shares the `context/` structure:
+- **Big picture** — `roadmap` (decompose an epic into a dependency-ordered change index, with pre-mortem / unknown-unknowns / devil's-advocate de-risking) · `stack` (durable tech-stack decision record)
+- **Process** — `shape` → `research` → `plan` (artifact chain under `context/changes/<id>/`; the plan's `## Progress checklist` is durable state)
+- **Execute** — `implement`, `tdd`, and `subagent-driven-development` (meta-orchestrator: fragments work across subagents, review loops, concluding gate)
+- **Diagnose** — `debugging` (feedback-loop-first)
+- **Gate** — `review` (Approved / Needs-attention / Rejected)
 
-**Execution** — `implement`, `tdd`, `subagent-driven-development`
+**Behavioral (cross-cutting)** — `lean-coding`, `lean-output`, `verification-before-completion`, `delegating` (correct subagent work-fragmentation in any phase)
 
-**Quality** — `debugging`, `critique` (interactive: `grill`), `review` (gate verdict)
-
-**Product** — `to-prd`, `to-issues`
-
-**Meta / behavior** — `writing-skills`, `lean-coding`, `lean-output`, `verification-before-completion`, `handoff`
+**Addons (standalone; never forced into the flow)** — `to-prd`, `to-issues`, `critique` (interactive: `grill`), `handoff`, `writing-skills`
 
 **Agents** (delegated roles) — `implementer`, `reviewer`, `critic`, `investigator`, `tester`
+
+### The flow
+
+```
+big / greenfield:  shape → to-prd → stack → roadmap(+de-risk) → plan <id> → implement/tdd/sdd → review
+big / brownfield:  shape → roadmap(+de-risk) → plan <id> → …
+small change:      shape → plan → build            (roadmap/stack skipped)
+```
 
 ## Install
 

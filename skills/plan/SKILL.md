@@ -60,4 +60,5 @@ End with:
 - Current state: plan path, phase count, first unchecked item.
 - Recommended next command: `subagent-driven-development <change-id>` for multi-task planned work, `tdd <change-id>` for test-first eligible behavior, or `implement <change-id>` for direct execution.
 - Optional alternatives: `critique context/changes/<change-id>/plan.md` or `review context/changes/<change-id>/plan.md`.
+- If this change came from a roadmap, flip its Status to `done` in `context/foundation/roadmap.md` once the work is complete and reviewed.
 - Copyable command block.

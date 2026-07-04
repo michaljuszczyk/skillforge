@@ -38,4 +38,4 @@ Use `references/prd-template.md` for the section template and quality checklist.
 
 - Do not invent stakeholder approval, tracker labels, or repository conventions.
 - Do not publish to an issue tracker unless the target and credentials are available.
-- Do not turn the PRD into a task list; use `to-issues` for implementation slices.
+- Do not turn the PRD into a task list. For a multi-change build, hand the PRD to `roadmap` (durable local change index) or `to-issues` (tracker slices).
