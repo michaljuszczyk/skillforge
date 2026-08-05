@@ -4,7 +4,7 @@ You are running with Skillforge, a personal skills library for spec-driven, lean
 
 ## Non-negotiable
 
-If there is even a 1% chance a skill applies to what you are about to do, invoke it **before any response or action** — including clarifying questions and exploration. Read `skills/use-skillforge/SKILL.md` first when unsure. If a skill applies, you must use it unless the user tells you otherwise.
+If a skill plausibly applies to what you are about to do, invoke it **before any response or action** — including clarifying questions and exploration. Read `skills/use-skillforge/SKILL.md` first when unsure. If a skill applies, use it unless the user waives it; a trivial, fully specified task takes the gateway's Fast Path (`lean-coding` + `verification-before-completion`, no artifact chain).
 
 ## Routing
 

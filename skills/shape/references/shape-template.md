@@ -50,7 +50,7 @@ Load this only when writing or reviewing `context/changes/<change-id>/shape.md` 
 
 ## Questioning Pressure
 
-Ask at least one sharp question for nontrivial work. Scale by risk:
+Ask only questions whose answers change the artifact; scale coverage by risk:
 
 - Low risk: ask about acceptance, non-goals, or what must not change.
 - Medium risk: add questions about edge cases, affected users, data, integration boundaries, and tests.

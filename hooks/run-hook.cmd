@@ -34,8 +34,9 @@ if %ERRORLEVEL% equ 0 (
     exit /b %ERRORLEVEL%
 )
 
-REM No bash found - exit silently rather than error
-REM (plugin still works, just without SessionStart context injection)
+REM No bash found - warn on stderr, exit 0 so the plugin keeps working
+REM (just without SessionStart context injection)
+echo run-hook.cmd: no bash found; SessionStart context injection skipped. Install Git for Windows or add bash to PATH. >&2
 exit /b 0
 CMDBLOCK
 

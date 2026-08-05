@@ -32,11 +32,7 @@ Do not re-ask decisions already answered in upstream artifacts.
 
 ## Questioning
 
-Ask at least one sharp question for nontrivial work before writing the final plan. Scale questions to risk:
-
-- Low: 1-3 questions about scope, acceptance, or tests.
-- Medium: 3-6 questions covering edge cases, interfaces, data, and verification.
-- High: 6-10 questions across architecture, migration, rollback, security, observability, and testing.
+Before writing the final plan, ask only questions whose answers change the plan. Scale to risk: a clear low-risk change may need none; as risk grows, cover edge cases, interfaces, data, and verification; for high-stakes work, also architecture, migration, rollback, security, and observability.
 
 Every question should force a decision. Use concrete options with tradeoffs. Mark `(Recommended)` only when grounded in research or repo conventions.
 

@@ -28,7 +28,7 @@ If `context/` is missing, create only the needed directories. Do not create READ
 
 1. Read any user-provided notes, ticket text, screenshots, or referenced files fully.
 2. Detect whether this is greenfield, brownfield feature work, a bug, a refactor, or infrastructure work from the repo and the user's words.
-3. Ask at least one sharp question for nontrivial work, even if the request seems clear. For larger or riskier work, ask complexity-scaled questions across goal, users, current behavior, target behavior, constraints, non-goals, and verification.
+3. Ask only questions whose answers change scope, risk, or the artifact. The cost of a wrong assumption decides how many: a clear low-risk request may need none; as risk grows, cover goal, users, current behavior, target behavior, constraints, non-goals, and verification.
 4. Prefer concrete options with tradeoffs when the user needs help deciding. Mark one option `(Recommended)` only when evidence supports it.
 5. Challenge vague scope by asking what would make the work fail, what must not change, and which behavior proves success.
 6. If writing or reviewing the artifact, follow Reference Loading before doing so.

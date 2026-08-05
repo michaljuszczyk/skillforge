@@ -37,18 +37,25 @@ Use this skill when:
 
 Do not use it when the next change is a tiny single edit, the plan is missing, or tasks are so tightly coupled that separate implementers would thrash.
 
-## Controller Workflow
+## Invariants
+
+These are binding regardless of how the loop is run:
+
+- One fresh implementer per bounded task, briefed with task-local context only. Never dispatch implementers that could touch overlapping files.
+- Independent review (reviewer or critic) passes before any `## Progress checklist` row flips. Verify the implementer's report against actual files before review.
+- The model is stated explicitly on every dispatch, or it silently inherits the session's most expensive model.
+- The checklist in `plan.md` is the only durable execution state; update it after every approved task, never from chat memory alone.
+- Development concludes only when a final whole-change `review` gate returns `Approved` — plus `critique` if architecture or contracts changed — or the user accepts the residual risk. Then flip this change's Status to `done` in `context/foundation/roadmap.md` if it came from a roadmap.
+
+## Default Loop
+
+The default controller path; adapt it to the task shape (merge steps, reorder, batch reviews) with a stated reason — the invariants above are not adaptable:
 
 1. Preflight the plan for contradictions, missing contracts, unsafe scope, or impossible verification.
-2. Identify the next unchecked checklist item or phase.
-3. Build an implementer brief with task-local context only.
-4. Dispatch one implementer. Do not dispatch multiple implementers that could touch overlapping files.
-5. Inspect the implementer report and changed files.
-6. Dispatch an independent reviewer or critic with the task brief, report, and diff or file list.
-7. If review finds blocking issues, dispatch a fixer or send the task back, then re-review.
-8. Only after review passes, flip the relevant row(s) in `## Progress checklist`.
-9. Continue from the first unchecked item until done or blocked.
-10. When every checklist row is checked, conclude development: dispatch a final whole-change `review` gate, and `critique` if architecture or contracts changed. If it returns findings, dispatch a fix fragment and re-review. Development concludes only when the final review returns `Approved` or the user accepts the residual risk. Once it does, flip this change's Status to `done` in `context/foundation/roadmap.md` if it came from a roadmap.
+2. Take the first unchecked checklist item, build the brief, dispatch one implementer.
+3. Inspect the report and changed files, then dispatch an independent reviewer or critic with the brief, report, and diff or file list.
+4. On blocking findings, dispatch a fixer or send the task back, re-review, then flip the relevant row(s).
+5. Repeat until done or blocked, then run the concluding gate from the invariants.
 
 The controller adjudicates conflicts between reviewer findings and plan text. Do not dismiss a finding because the plan implied it; ask the user when the plan itself appears wrong.
 

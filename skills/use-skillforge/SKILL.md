@@ -8,9 +8,7 @@ If you were dispatched as a subagent to execute one specific bounded task, ignor
 </SUBAGENT-STOP>
 
 <EXTREMELY-IMPORTANT>
-If there is even a 1% chance a skill applies to what you are about to do, you MUST invoke it first.
-
-If a skill applies, you do not have a choice. Use it. This is not negotiable, and you cannot rationalize your way out of it.
+If a skill plausibly applies to what you are about to do, invoke it first. Skipping a matching skill is not your call — only the user can waive it. Trivial tasks take the Fast Path below; that is a route, not a skip.
 </EXTREMELY-IMPORTANT>
 
 # Use Skillforge
@@ -19,7 +17,11 @@ If a skill applies, you do not have a choice. Use it. This is not negotiable, an
 
 Check for a relevant skill **before any response or action** — including clarifying questions, exploring the codebase, reading files, or planning. If the skill turns out wrong for the situation, you do not have to follow it.
 
-Then announce "Using `<skill>` to `<purpose>`" in one short line and follow the skill exactly. If it has a checklist, track one todo per item.
+Then announce "Using `<skill>` to `<purpose>`" in one short line and follow it: rules inside a skill are binding; procedures are the default path — deviate only with a stated reason. If it has a checklist, track one todo per item.
+
+## Fast Path
+
+A trivial, fully specified task — typo, rename, one-line fix, direct factual question — needs no artifact chain: apply `lean-coding` and `verification-before-completion` and proceed. If scope grows mid-task, stop and re-route through the normal flow.
 
 ## Skill Priority
 
@@ -38,13 +40,9 @@ These thoughts mean STOP — you are rationalizing:
 | Thought | Reality |
 |---------|---------|
 | "This is just a simple question" | Questions are tasks. Check for a skill. |
-| "I need more context first" | The skill check comes BEFORE clarifying questions. |
-| "Let me explore the codebase first" | Skills tell you HOW to explore. Check first. |
-| "I can check git/files quickly" | Files lack conversation context. Check for a skill. |
-| "This doesn't need a formal skill" | If a skill exists, use it. |
+| "Let me explore / get context first" | The check comes BEFORE exploration and clarifying questions. |
+| "The skill is overkill" | Maybe — then take the Fast Path explicitly. Never skip silently. |
 | "I remember this skill" | Skills evolve. Read the current version. |
-| "The skill is overkill" | Simple things become complex. Use it. |
-| "I'll just do this one thing first" | Check BEFORE doing anything. |
 
 ## Defaults
 
