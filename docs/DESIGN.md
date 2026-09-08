@@ -6,8 +6,8 @@
 # Why this shape
 
 Skillforge v1 had 21 skills, an always-on gateway hook injecting ~600 words every session and
-after every compaction, five subagent role files, and three plugin manifests. v2 is 10 skills
-and a 55-line always-on file. This is the reasoning, so it does not get re-added by accident.
+after every compaction, five subagent role files, and three plugin manifests. v2 is 12 skills
+and a ~70-line always-on file. This is the reasoning, so it does not get re-added by accident.
 
 ## What the research says
 
@@ -34,7 +34,7 @@ because routing is a choice the model makes. This is why `lean-coding`, `lean-ou
 `verification-before-completion` are sections of `AGENTS.md` rather than skills.
 
 **Self-sufficiency over composition.** v1's skills opened by invoking a gateway and referencing
-siblings. When a client repo gets two of ten skills copied in by hand, those references dangle.
+siblings. When a client repo gets two of twelve skills copied in by hand, those references dangle.
 Cross-references are suggestions, never dependencies.
 
 **Artifacts are templates.** `roadmap`, `stack`, and `to-prd` were skills competing with `shape`
@@ -46,7 +46,7 @@ loaded, and a new document type no longer means a new routing competitor.
 | Dropped | Why |
 |---|---|
 | Gateway/router skill + session hook | Most hosts already inject every skill's name and description. `AGENTS.md` carries the routing rule in two lines and is read everywhere |
-| `review` as a procedure | Hosts have review commands. The rubric is the part worth owning |
+| `review` rebuilt around a rubric | Hosts have review commands; the mechanics are theirs. The severity model, the omission rule and the findings format are the part worth owning |
 | `subagent-driven-development`, `implement` | Host orchestration (agents, workflows) plus `plan`'s checklist cover it. The briefing judgment lives in `delegating` |
 | `research` | Folded into `plan`, where the findings are actually used |
 | `critique` | `grilling` stress-tests before a decision; `review` judges after work. A third interrogation skill only split the routing |

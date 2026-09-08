@@ -7,7 +7,7 @@
     {
       "name": "skillforge",
       "source": ".",
-      "description": "Ten skills and one always-on working agreement. Provider-independent, zero runtime."
+      "description": "Twelve skills and one always-on working agreement. Provider-independent, zero runtime."
     }
   ]
 }

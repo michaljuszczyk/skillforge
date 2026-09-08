@@ -1,6 +1,6 @@
 ---
 name: debugging
-description: Diagnose a bug, crash, wrong output, or flaky test down to its root cause before changing any code, by building a reproduction loop first. Use on any reported failure, when a previous fix did not hold, or whenever you are tempted to try a change and see what happens. Triggers on debug, diagnose, root cause, why is this failing, it broke, or reproduce it.
+description: Diagnose a bug, crash, wrong output, flaky test, or performance problem down to its root cause before changing any code, by building a reproduction or measurement loop first. Use on any reported failure or slowness, when a previous fix did not hold, or whenever you are tempted to try a change and see what happens. Triggers on debug, diagnose, root cause, why is this failing, why is this slow, it broke, or reproduce it.
 ---
 
 # Debugging
@@ -34,6 +34,9 @@ failure whose cause is already evident.
    the raw error or symptom. No paraphrasing.
 2. Build the loop: the cheapest reproduction that fails **red for the right reason** and that
    you can run on demand. Prefer a failing test.
+   For a performance problem the loop is a **repeatable measurement**, not a red test: a timing
+   or profile you can run before and after, with the number written down. Measure before you
+   hypothesize — never invent a latency threshold and assert against it.
 3. Confirm the loop actually reproduces the failure *before* forming any hypothesis.
 4. Form one falsifiable hypothesis. Predict what the loop will show if it is true.
 5. Test it by observation — read state, add a probe, bisect, diff a working against a broken
@@ -54,9 +57,10 @@ failure whose cause is already evident.
 
 ## Stopping rule
 
-If three attempted fixes fail, stop editing. Your model of the system is wrong — question the
-architecture, the assumptions, or the reproduction itself, and restart from step 1. Say so
-plainly rather than continuing to patch.
+Count edits to production code, not ideas. After **three changes that did not make the loop go
+green**, stop editing. Your model of the system is wrong — question the architecture, the
+assumptions, or the reproduction itself, and restart from step 1. Say so plainly rather than
+continuing to patch. Testing a hypothesis by observation does not count; changing code does.
 
 ## Boundaries
 

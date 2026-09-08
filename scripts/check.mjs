@@ -113,10 +113,28 @@ for (let i = 0; i < skills.length; i++) {
     const a = words(skills[i].fm?.description), b = words(skills[j].fm?.description);
     const shared = [...a].filter((w) => b.has(w));
     const overlap = shared.length / Math.min(a.size || 1, b.size || 1);
-    if (overlap > 0.35) {
+    if (overlap > 0.2) {
       warn(`${skills[i].fm?.name} vs ${skills[j].fm?.name}: ${Math.round(overlap * 100)}% shared trigger vocabulary — ${shared.slice(0, 8).join(", ")}`);
     }
   }
+}
+
+// --- catalog-wide: identical literal trigger phrases ("Triggers on a, b, or c")
+const phrases = (d) => {
+  const m = (d ?? "").match(/triggers? on\s+([^.]+)/i);
+  if (!m) return [];
+  return m[1].split(/,| or /i).map((p) => p.trim().toLowerCase().replace(/^(a|an|the) /, ""))
+    .filter((p) => p.length > 2);
+};
+const owners = new Map();
+for (const s of skills) {
+  for (const p of phrases(s.fm?.description)) {
+    if (!owners.has(p)) owners.set(p, []);
+    owners.get(p).push(s.fm?.name);
+  }
+}
+for (const [phrase, names] of owners) {
+  if (names.length > 1) fail(`trigger phrase "${phrase}" is claimed by ${names.join(" and ")}`);
 }
 if (warnings === 0 && errors === 0) console.log("  ok");
 

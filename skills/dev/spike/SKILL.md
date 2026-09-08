@@ -27,7 +27,8 @@ not use for work you already know is feasible: just build it.
 
 1. **Write the question down first**, phrased so the spike can come back yes or no. A spike
    without a question is just unsupervised coding.
-2. **Timebox it, and say the box out loud** before starting.
+2. **Budget it in attempts, not minutes** — you have no clock. Say the budget out loud before
+   starting ("six runs, or three approaches, then I report"), and count out loud as you spend it.
 3. **Throwaway and labelled from day one** — a `spike-` prefixed file, directory, or branch,
    never inside a production path where it can be mistaken for real work.
 4. **One command to run it.** If demonstrating the result takes explaining, the spike is too big.
@@ -51,5 +52,5 @@ spike did *not* test. That last one matters — a spike proves one thing and imp
 - Never leave it in the repo "for reference". If it is worth keeping, it is worth a branch and a
   note; otherwise it is noise that someone will one day import.
 - Do not answer the question from opinion when the spike has not been run.
-- If the timebox runs out, stop and report what you learned. "We could not settle it in two
-  hours" is a real answer and usually an important one.
+- If the budget runs out, stop and report what you learned. "Three approaches, none of them
+  worked" is a real answer and usually an important one.

@@ -1,6 +1,6 @@
 ---
 name: handoff
-description: Write a compact handoff document so a fresh agent or a later session can continue this work safely. Use when context is nearly spent, when stopping mid-task, or when the user asks for a handoff, a continuation note, or to pick this up elsewhere. Written for an agent, not for a human audience.
+description: Write a compact handoff document so a fresh agent or a later session can continue this work safely. Use when context is nearly spent, when stopping mid-task, or when the user asks for a handoff, a continuation note, or to pick this up elsewhere. Written for an agent, not for a human audience. Triggers on handoff, continuation note, hand this over, or pick this up elsewhere.
 license: MIT
 metadata:
   attribution: shape adapted from mattpocock/skills (MIT) - see docs/ATTRIBUTION.md

@@ -1,6 +1,6 @@
 ---
 name: digest
-description: Turn a conversation, a decision, a topic, or a piece of work into one self-contained HTML page a person can read, keep, and send to someone else. Use when the user asks to summarize, write up, visualize, explain, or share what we did — a recap, an explainer, a decision write-up, an options comparison, or a status report. Written for humans, unlike a handoff.
+description: Turn a conversation, a decision, a topic, or a piece of work into one self-contained HTML page a person can read, keep, and send to someone else. Use when the user asks to summarize, write up, visualize, explain, or share what we did — a recap, an explainer, a decision write-up, an options comparison, or a status report. Written for humans, unlike a handoff. Triggers on summarize this, write it up, visualize, explainer, status report, or share this.
 ---
 
 # Digest
@@ -40,8 +40,9 @@ One mode per page. If two are wanted, ask which, or write two pages.
    before-and-after, a dependency shape. A diagram of three boxes labelled with nouns is
    decoration; cut it.
 6. **Write the page**, following the template.
-7. **Deliver.** If the host can publish or preview HTML, use it and hand back the link,
-   adapting the skeleton to that host's rules. Otherwise write the file and print the full path.
+7. **Deliver.** If the host can publish or preview HTML, use it and hand back the link, adapting
+   the skeleton to that host's rules. **Always end with the full path to the file on disk**, link
+   or no link — a page the user cannot find is a page that does not exist.
 
 ## Where it goes
 

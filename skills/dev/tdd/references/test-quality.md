@@ -1,6 +1,6 @@
 # Test Quality
 
-Load this reference before writing or changing tests, choosing a test boundary, adding mocks or fixtures, handling a test that passes immediately, or judging RED/GREEN evidence.
+Load before writing or changing tests, choosing a test boundary, or adding mocks or fixtures. The red/green evidence rules live in SKILL.md and are not repeated here.
 
 ## Good Tests
 
@@ -9,21 +9,6 @@ Good tests assert externally visible behavior through a public boundary: API res
 Expected values come from an independent source: requirements, examples, contracts, user-provided bug reports, known-good fixtures, or worked examples. Do not copy the production calculation into the assertion.
 
 Prefer one behavior per test. Name the test for the outcome, not the mechanism.
-
-## Red Evidence
-
-A valid RED run proves missing or broken behavior:
-
-- The test fails before production implementation.
-- The failure reason is expected and relevant.
-- The failure is not a syntax error, bad import, test setup bug, or mocked behavior.
-- For bugs, the reproduction shows actual behavior differing from expected behavior.
-
-If the test passes immediately, stop. Either the behavior already exists, the test is too weak, or the test is asserting the wrong thing. Strengthen the test, redirect to `implement`, or mark the item already done only with evidence.
-
-## Green Evidence
-
-GREEN means the same focused command passes after the smallest production change. If unrelated tests fail, fix the production change or narrow the scope before moving on. Refactor only while green.
 
 ## Test Boundaries
 
@@ -59,14 +44,3 @@ Avoid:
 - Test-only production methods.
 - Skipped tests used to make a phase look green.
 - Broad "tests after" coverage that never proved RED.
-
-## Bug Fix Checklist
-
-Capture the bug before changing production code:
-
-- Input, state, or user action.
-- Expected behavior.
-- Actual behavior.
-- Failing command or observed symptom.
-
-The fix is not complete until that reproduction passes and the relevant phase verification has run.

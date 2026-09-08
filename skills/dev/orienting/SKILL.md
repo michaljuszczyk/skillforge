@@ -1,6 +1,6 @@
 ---
 name: orienting
-description: Get up to speed in an unfamiliar codebase before any change is chosen — prove the build, test and lint commands by running them, find the conventions actually in force, the hot paths, and what nobody tests. Use when arriving in a client repo or a project you have not worked in, or when asked what this codebase does, how it is built, or where to start. Produces understanding, and stops before planning a change.
+description: Get up to speed in an unfamiliar codebase before any change is chosen — prove the build, test and lint commands by running them, find the conventions actually in force, the hot paths, and what nobody tests. Use when arriving in a client repo or a project you have not worked in, or when asked what this codebase does, how it is built, or where to start. Produces understanding, and stops before planning a change. Triggers on orient, get up to speed, unfamiliar repo, what does this codebase do, or where do I start.
 ---
 
 # Orienting
@@ -25,13 +25,16 @@ an orientation.
 
 1. **Read the map.** README, `AGENTS.md`/`CLAUDE.md`, CONTRIBUTING, package manifests, CI config.
    Cheap, dense, and often out of date — which is itself a finding.
-2. **Prove the commands.** Install, build, test, lint, run. Actually run them. A documented
+2. **Prove the commands.** Install, build, test, and lint — actually run them. A documented
    command that fails is your first finding and often the most valuable thing you produce today.
+   Find the run command too, but do not start it: a dev server or watcher is long-running, and
+   starting one uninvited is not yours to do. Report it as documented-not-verified.
 3. **Find the conventions in force.** Read the diffs of the last twenty or thirty commits, not
    the style guide. Where the guide and the code disagree, the code wins — note the gap rather
    than silently picking a side.
-4. **Find the hot paths.** What changes most is what matters most, and what breaks most:
-   `git log --format= --name-only | sort | uniq -c | sort -rn | head -20`.
+4. **Find the hot paths.** What changes most is what matters most, and breaks most. Run
+   `git log --format= --name-only -n 300`, then count the repeats yourself — shell-agnostic, and
+   it works where `uniq` and `head` do not exist.
 5. **Find the untested territory.** Which of those hot files have no test near them. That
    intersection is where risk lives.
 6. **Find the boundaries.** Who touches what (`git shortlog -sn -- <path>`), where the seams

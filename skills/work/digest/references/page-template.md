@@ -58,6 +58,10 @@ content and drop the outer `<!doctype>`, `<html>`, `<head>`, `<body>` tags per t
   footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line);
            color: var(--muted); font-size: .85rem; }
   @media print {
+    :root {
+      --bg: #fff; --fg: #000; --muted: #444; --line: #bbb;
+      --accent: #333; --card: #fff; --code: #f2f2f2; --warn: #7a4a00;
+    }
     body { background: #fff; color: #000; padding: 0; font-size: 11pt; }
     .lead { border-color: #999; }
     h2 { page-break-after: avoid; }

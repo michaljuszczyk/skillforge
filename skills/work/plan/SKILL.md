@@ -1,6 +1,6 @@
 ---
 name: plan
-description: Write and then work an implementation plan — phases, verification per phase, and a durable progress checklist that survives a new session or a compaction. Use when work spans more than one sitting, needs a sequence, or has to be resumable; and use it again to resume, when the user says continue, pick up where we left off, or what is left.
+description: Write and then work an implementation plan — phases, verification per phase, and a durable progress checklist that survives a new session or a compaction. Use when work spans more than one sitting, needs a sequence, or has to be resumable; and use it again to resume, when the user says continue, pick up where we left off, or what is left. Triggers on plan, phases, break a change into phases, resume, or what is left.
 ---
 
 # Plan
@@ -30,9 +30,12 @@ plan state is ephemeral; the file is what survives.
 
 ## Writing the plan
 
-- One file: `context/changes/<change-id>/plan.md`, in the repo. Create the directories if they do
-  not exist. The only override is the user naming a different location — a plan outside the repo
-  cannot be resumed by anyone but you.
+- One file: `context/changes/<change-id>/plan.md`, in the repo. The change-id is `NN-slug` with
+  `NN` the next unused number under `context/changes/` — list the directory before choosing, and
+  reuse the id of the brief this plan implements. Create the directories if they do not exist.
+- The only override is the user naming a different location — a plan outside the repo cannot be
+  resumed by anyone but you. If the write genuinely fails, use the OS temp dir, print the full
+  path, and say the plan is not durable until it is moved into the repo.
 - Phases, not tasks. A phase is a coherent unit that leaves the codebase working and verifiable.
 - Every phase names its own **verification** — the command or observable result that proves it
   landed. A phase you cannot verify is a phase you cannot finish.
@@ -46,6 +49,11 @@ plan state is ephemeral; the file is what survives.
 
 ## Working the plan
 
+**Find the plan first.** Resuming, or handed a change-id, list `context/changes/*/plan.md` and
+take the one whose `**Status**` is `in progress`. Open with its checklist and its last `Log`
+line so the user can see the state before you touch anything. Two in progress: name both, ask
+which. None: there is no plan yet — write one.
+
 1. Re-read the plan file before each phase, not from memory.
 2. Do one phase. Run its verification. Show the output.
 3. Tick the checklist item and record what actually happened if it differed.
@@ -57,9 +65,10 @@ plan state is ephemeral; the file is what survives.
 
 Split a phase out to a subagent when it is bounded, verifiable, and needs no conversation
 history: independent research, a mechanical multi-file edit with a complete spec, an isolated
-review. Give it exactly one task, its own paths to touch, and a report contract — never two
-writers over the same paths, and never a decision that is yours to make. Verify what comes back
-against the source before you tick anything.
+review. Give it exactly one task, its own paths to touch, a report contract, and the cheapest
+model tier that can do it — an unstated tier silently inherits your session's, usually the most
+expensive one. Never two writers over the same paths, and never a decision that is yours to
+make. Verify what comes back against the source before you tick anything.
 
 ## Boundaries
 

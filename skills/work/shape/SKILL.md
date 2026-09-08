@@ -1,6 +1,6 @@
 ---
 name: shape
-description: Turn a raw request into a written artifact — a change brief, an epic roadmap, a decision record, or a PRD — by resolving the open decisions first. Use before planning or building when the work is not yet crisp: vague scope, unclear goal, competing options, or an epic that has not been broken down. Triggers on shape, scope, frame, clarify, brief, roadmap, break this down, ADR, decide between, or write a PRD.
+description: Turn a raw request into a written artifact — a change brief, an epic roadmap, a decision record, or a PRD — by resolving the open decisions first. Use before planning or building when the work is not yet crisp: vague scope, unclear goal, competing options, or an epic that has not been broken down. Triggers on shape, scope, frame, clarify, brief, roadmap, break an initiative into changes, ADR, decide between, or write a PRD.
 ---
 
 # Shape
@@ -21,8 +21,9 @@ Load exactly one template, and only once you are ready to write. Do not load any
 route, to ask questions, or to answer a clarification. Read `examples/brief.md` or
 `examples/roadmap.md` only when the shape of the output is unclear.
 
-If none of the four fits, write the closest one and note the deviation. Do not invent a new
-document type mid-task; if the gap is real, propose a new template afterwards.
+If none of the four fits, say so and write plain structured prose instead — a forced template
+produces a worse document than no template. Do not invent a new document type mid-task; if the
+gap keeps recurring, propose a new template afterwards.
 
 ## Process
 
@@ -40,7 +41,10 @@ document type mid-task; if the gap is real, propose a new template afterwards.
    cover goal, users, current behavior, target behavior, constraints, non-goals, verification.
 6. Challenge vague scope directly: what would make this fail, what must not change, and what
    observable behavior proves it worked.
-7. Write the artifact from the template. Then stop and hand back.
+7. **Confirm before writing.** List the settled decisions in a few lines and ask the user to
+   confirm you have them right. The artifact records their decisions, not your inferences — so
+   an unconfirmed summary is a draft of your own opinion.
+8. Write the artifact from the template. Then stop and hand back.
 
 ## Where it goes
 
@@ -49,9 +53,18 @@ Artifacts live in the repo, always, so they outlive the session and the agent:
 - Project-wide or multi-change work → `context/foundation/`
 - A single change → `context/changes/<change-id>/`
 
+**Minting a change-id.** `NN-slug` — `NN` is the next unused two-digit number under
+`context/changes/`, the slug is two or three words from the goal: `03-csv-export`. List the
+directory before choosing. Never reuse a number and never write into an existing change's
+directory. Roadmap entries map onto the same scheme, in the order the roadmap lists them.
+
 Create the directories if they do not exist. The only override is the user naming a different
 location — not a guess that a repo would prefer otherwise. An artifact written outside the repo
 stops being the shared record it exists to be.
+
+If the write genuinely fails — read-only checkout, refused permission — write to the OS temp dir
+(`%TEMP%`, else `$TMPDIR`, else `/tmp`), print the full path, and say plainly that the artifact
+is not durable until someone moves it into the repo. Never continue as though it had been saved.
 
 ## Artifact rules
 

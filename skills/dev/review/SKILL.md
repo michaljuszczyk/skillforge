@@ -45,6 +45,12 @@ Findings first, most severe first, each as:
 path:line: Severity: problem. Why it matters. Suggested fix.
 ```
 
+Where no line exists, use the narrowest stable location — a function, a section, a file. **An
+omission is located at the thing it should have satisfied**: a requirement with no implementing
+code is a finding at the brief line that requires it, a missing migration at the schema change
+that needs one. Omissions are usually the most valuable findings in a review, so never drop one
+for want of a line number.
+
 Then, in two lines: what you checked and what you did not, and the verdict — **approved**,
 **needs attention**, or **rejected**, with the one reason.
 

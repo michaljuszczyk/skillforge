@@ -10,9 +10,9 @@ smallest change that makes it pass. Refactoring is not part of this loop — it 
 
 ## Reference loading
 
-Load `references/test-quality.md` before writing or changing tests, choosing a test boundary,
-adding a mock or fixture, judging whether red or green evidence is strong enough, or when a test
-passes immediately. Do not load it to decide whether TDD applies.
+Load `references/test-quality.md` before writing or changing tests, choosing a test boundary, or
+adding a mock or fixture. Do not load it to decide whether TDD applies, or to judge red and green
+evidence — those rules are below.
 
 ## Eligibility
 

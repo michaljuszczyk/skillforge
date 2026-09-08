@@ -1,6 +1,6 @@
 ---
 name: grilling
-description: Interrogate the user round by round until a plan, design, or decision is fully understood, with no unstated assumptions left. Use when the user asks to be grilled, wants their thinking stress-tested, or when a decision is theirs to make and you would otherwise guess. Produces no file — use a shaping skill when an artifact is wanted.
+description: Interrogate the user round by round until a plan, design, or decision is fully understood, with no unstated assumptions left. Use when the user asks to be grilled, wants their thinking stress-tested, or when a decision is theirs to make and you would otherwise guess. Produces no file, so use a shaping skill when an artifact is wanted. Triggers on grill me, stress-test this, interrogate me, or poke holes.
 license: MIT
 metadata:
   attribution: mechanism adapted from mattpocock/skills (MIT) - see docs/ATTRIBUTION.md
