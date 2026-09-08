@@ -1,72 +1,72 @@
 # Skillforge
 
-A personal, opinionated skills library for AI coding agents. Spec-driven, lean, and verified — the best of the tools I use, consolidated into one package that behaves the same across Claude Code, Cursor, and Codex.
+A small, opinionated skill pack for AI coding agents. Twelve skills, one always-on file, no runtime.
+Built to work the same on any agent that reads `AGENTS.md` and the
+[Agent Skills spec](https://agentskills.io/specification) — and to keep working when someone
+copies two of its files into a locked-down repo by hand.
 
-## What's inside
+## What is in it
 
-Skills split into a coherent **main flow** and standalone **addons**.
+**`AGENTS.md`** — the always-on working agreement. Constraints, not procedure: what to settle
+before building, simplicity and surgical-change rules, what "done" requires, how to disagree,
+and what never to do. `CLAUDE.md` and `GEMINI.md` point at it.
 
-**Gateway (always-on)**
-- `use-skillforge` — forces a skill check before any action; injected every session and after every compaction.
+**`skills/work/`** — generic, any kind of work:
 
-**Main flow** — shares the `context/` structure:
-- **Big picture** — `roadmap` (decompose an epic into a dependency-ordered change index, with pre-mortem / unknown-unknowns / devil's-advocate de-risking) · `stack` (durable tech-stack decision record)
-- **Process** — `shape` → `research` → `plan` (artifact chain under `context/changes/<id>/`; the plan's `## Progress checklist` is durable state)
-- **Execute** — `implement`, `tdd`, and `subagent-driven-development` (meta-orchestrator: fragments work across subagents, review loops, concluding gate)
-- **Diagnose** — `debugging` (feedback-loop-first)
-- **Gate** — `review` (Approved / Needs-attention / Rejected)
+| Skill | Use it for |
+|---|---|
+| `grilling` | Being interrogated round by round until a plan or decision has no unstated assumptions. Writes nothing |
+| `shape` | Turning a raw request into an artifact — brief, roadmap, decision record, or PRD |
+| `plan` | Phases with per-phase verification and a durable checklist that survives a new session |
+| `delegating` | Deciding what to hand to a subagent, and briefing it so the result is verifiable |
+| `handoff` | A compact continuation note for the next agent, written to temp |
+| `digest` | A self-contained HTML page for a human to read, keep, and forward |
+| `writing-skills` | Authoring skills, harvesting them from real work, and retiring dead ones |
 
-**Behavioral (cross-cutting)** — `lean-coding`, `lean-output`, `verification-before-completion`, `delegating` (correct subagent work-fragmentation in any phase)
+**`skills/dev/`** — only on a codebase:
 
-**Addons (standalone; never forced into the flow)** — `to-prd`, `to-issues`, `critique` (interactive: `grill`), `handoff`, `writing-skills`
+| Skill | Use it for |
+|---|---|
+| `orienting` | Getting up to speed in an unfamiliar repo, with the commands proven by running them |
+| `debugging` | Reproduction loop first, one falsifiable hypothesis at a time, three-strikes stop |
+| `tdd` | One behavior at a time, red for the right reason, refactoring left to review |
+| `spike` | Answering "can this even work" with a throwaway, then deleting the code |
+| `review` | Findings first, severity-ordered, each with a location and a fix |
 
-**Agents** (delegated roles) — `implementer`, `reviewer`, `critic`, `investigator`, `tester`
+**`addons/`** — empty by design. See its README for when something belongs there.
 
-### The flow
+## Design rules
 
-```
-big / greenfield:  shape → (to-prd) → stack → roadmap(+de-risk) → plan <id> → implement/tdd/sdd → review   ( ) = optional addon
-big / brownfield:  shape → roadmap(+de-risk) → plan <id> → …
-small change:      shape → plan → build            (roadmap/stack skipped)
-```
+1. **Judgment, not mechanics.** A skill encodes decision criteria, rubrics, and definitions of
+   done. Where a host automates the mechanics — plan mode, a review command, subagents — the
+   skill says so and defers.
+2. **Self-sufficient.** No skill assumes another is installed, or that a hook or router ran.
+3. **Zero runtime in the core.** Pure markdown. Scripts are optional and nothing depends on them.
+4. **The bar for a new skill:** name in one sentence what the model reliably gets wrong without
+   it. If an always-on rule or a host feature covers it, it does not ship.
+5. **New artifact types are templates**, not new skills.
 
 ## Install
 
-Two layers, because they serve different needs.
-
-### 1. Portable skills — any tool
+Any agent, via the [skills CLI](https://github.com/vercel-labs/skills):
 
 ```bash
 npx skills add michaljuszczyk/skillforge          # this project
-npx skills add michaljuszczyk/skillforge -g       # global (all projects)
+npx skills add michaljuszczyk/skillforge -g       # all projects
 ```
 
-Installs the `skills/` into each detected agent (`.claude/skills`, `.cursor/skills`, `.codex/skills`…). Skills are model-invoked on demand. This does **not** install the always-on hook.
+Claude Code, as a plugin (also gets the optional session hook):
 
-### 2. Always-on awareness — Claude Code / Cursor
-
-For the gateway to be injected every session (and survive `/clear` and compaction), install as a plugin so the `SessionStart` hook runs:
-
-**Claude Code**
 ```
 /plugin marketplace add michaljuszczyk/skillforge
 /plugin install skillforge
 ```
 
-**Cursor** — point Cursor at `.cursor-plugin/plugin.json` (skills + `hooks/hooks-cursor.json`).
+No CLI, no network, locked-down machine: copy the skill folders you want into the agent's skills
+directory and `AGENTS.md` to the repo root. Everything works standalone.
 
-**Any AGENTS.md-aware tool** — `AGENTS.md` at the repo/workspace root is read automatically and carries the non-negotiable "check for a skill first" rule as a fallback when no hook is available.
+## Attribution
 
-## How always-on works
-
-`hooks/session-start` reads `skills/use-skillforge/SKILL.md` and injects it at `startup|clear|compact`, emitting the correct JSON shape per platform (`additional_context` for Cursor, `hookSpecificOutput.additionalContext` for Claude Code, top-level `additionalContext` otherwise). `run-hook.cmd` is a polyglot wrapper so the same hook runs on Windows and Unix.
-
-## Layout
-
-```
-AGENTS.md / CLAUDE.md / GEMINI.md   session gateway (auto-read)
-hooks/                              SessionStart injection (Claude + Cursor)
-.claude-plugin/ .cursor-plugin/ .codex-plugin/   per-harness plugin manifests
-skills/<name>/SKILL.md              lean behavior + lazy references/
-agents/<role>.md                    delegated subagent role contracts
-```
+The grilling mechanism and the handoff shape are adapted from
+[mattpocock/skills](https://github.com/mattpocock/skills) (MIT). See `docs/ATTRIBUTION.md`.
+Design rationale is in `docs/DESIGN.md`.

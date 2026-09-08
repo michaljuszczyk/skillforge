@@ -7,7 +7,7 @@
     {
       "name": "skillforge",
       "source": ".",
-      "description": "Personal skills library: spec-driven development, lean coding, debugging, verified completion, and always-on skill awareness."
+      "description": "Ten skills and one always-on working agreement. Provider-independent, zero runtime."
     }
   ]
 }

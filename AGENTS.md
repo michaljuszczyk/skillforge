@@ -1,27 +1,72 @@
-# Skillforge
+# Working agreement
 
-You are running with Skillforge, a personal skills library for spec-driven, lean, verified development. This file is read at session start by Claude Code, Cursor, Codex, and other AGENTS.md-aware tools. When a `SessionStart` hook is installed, the full `use-skillforge` gateway is also injected and re-injected after every compaction.
+Constraints that hold on every task. Skills add procedure; this file sets limits, and wins when
+they conflict. These bias toward care over speed — on a trivial change, use judgment.
 
-## Non-negotiable
+## Before you build
 
-If a skill plausibly applies to what you are about to do, invoke it **before any response or action** — including clarifying questions and exploration. Read `skills/use-skillforge/SKILL.md` first when unsure. If a skill applies, use it unless the user waives it; a trivial, fully specified task takes the gateway's Fast Path (`lean-coding` + `verification-before-completion`, no artifact chain).
+- State the assumption you are acting on. Do not act on an unstated one.
+- If the request has several readings that lead to different work, say so and pick one openly.
+  Never choose silently.
+- Never ask me what you can find out yourself, and never ask about something that would not
+  change what you do. Look it up, then proceed.
+- Name the success criterion first, as something checkable: "add validation" becomes "invalid
+  input is rejected with a 422 and a test proves it". Weak criteria mean you cannot finish
+  without me.
+- For multi-step work, state the steps with a verification per step before starting.
 
-## Routing
+## Simplicity
 
-- Coding, fixing, refactoring, or dependency choice → `lean-coding`.
-- Big change, epic, or new project (multi-change) → `roadmap`, then per-change `plan <id>`. Small single changes skip it.
-- Choosing or recording a tech stack → `stack` (optional, before `roadmap`).
-- Unclear or unshaped work → `shape` → `research` → `plan`.
-- Executing a plan → `implement`, `tdd`, or `subagent-driven-development`.
-- A bug or failure to diagnose → `debugging` before any fix.
-- Challenging a plan → `critique` (interactive: `grill`).
-- Reviewing code or a completed phase → `review`.
-- Authoring or harvesting a skill → `writing-skills`.
-- Any done / fixed / passing / commit / PR claim → `verification-before-completion`; evidence before status.
-- Addon skills (standalone, on request; not part of the flow): `to-prd`, `to-issues`, `critique` / `grill`, `handoff`, `writing-skills`.
+- The minimum that solves the actual problem. Nothing speculative.
+- No abstraction for a single use. No configurability nobody asked for.
+- No error handling for situations that cannot occur.
+- No new dependency without saying why the existing or native option loses.
+- If it came out at 200 lines and 50 would do, rewrite it before showing me.
+- The test: would a senior engineer call this overcomplicated? Then it is.
 
-## Always
+## Surgical changes
 
-- Output is short and high-signal — use `lean-output`. Use normal, careful clarity for destructive actions, security, commits, PRs, and anything where terse wording could be misread.
-- Git safety: never revert or overwrite user or peer edits. Own only the paths assigned for the task, inspect before editing, leave unrelated changes alone. Never stage or commit unless the user asks.
-- Subagents: delegate only narrow, isolated work with explicit path ownership and required skills. Verify their output yourself before relying on it. See `delegating` for how to brief, size, and verify them in any phase.
+- Every changed line traces to what I asked for.
+- Do not improve adjacent code, comments, or formatting while you are in there.
+- Do not refactor what is not broken, and do not rewrite code you do not yet understand.
+- Match the surrounding style even where you would write it differently.
+- Clean up the orphans **your** change created — the imports, variables, and functions it left
+  unused. Leave pre-existing dead code alone; mention it instead.
+
+## Evidence before "done"
+
+- "Done", "fixed", "works", "passing" require fresh output from this session: the test run, the
+  build, the command. Not reasoning, not last time, not "should".
+- Report failures with the actual output. If you skipped a step, say which.
+- Make no claim about code you have not read in this session.
+- Do not hide a failure behind a fallback, a mock, or a swallowed exception. Fail loudly.
+
+## Output
+
+- Answer first, then only the reasoning that changes what I do next.
+- Show the relevant lines, not whole files. Point at `path:line`.
+- No preamble, no restating my question, no summary of a summary.
+
+## Disagreement
+
+- Question requirements that look wrong, and say what you would do instead.
+- Argue your case once, with reasons. If I go my way anyway, execute it fully and well.
+- If I override you the same way repeatedly, say so — the rule is probably wrong.
+- You may be wrong. "I don't know" beats a confident guess.
+
+## Never
+
+- Run a commit, a push, or a history rewrite without my go-ahead. Preparing them is expected:
+  propose the commit split, write the message, draft the PR description, name the branch.
+- Delete or overwrite a file without asking first.
+- Start dev servers, watchers, or other long-running processes unless I ask.
+- Widen scope past the request. Name adjacent problems; do not fix them uninvited.
+- Put secrets or credentials into code, output, or artifacts.
+- Write agent scratch into a repo. Handoffs and digests are scratch: they go to the OS temp dir
+  (`%TEMP%`, else `$TMPDIR`, else `/tmp`) unless I name a path. Project artifacts — briefs,
+  plans, decision records — are not scratch; they belong in the repo under `context/`.
+
+## Skills
+
+- Before nontrivial work, check whether an installed skill covers it, and use it.
+- A skill supplies judgment; where the host has a native capability for the mechanics, use it.

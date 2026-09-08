@@ -1,7 +1,7 @@
 {
   "name": "skillforge",
-  "description": "Personal skills library: spec-driven development, lean coding, debugging, verified completion, and always-on skill awareness.",
-  "version": "1.2.0",
+  "description": "Ten skills and one always-on working agreement: grilling, shaping, planning, delegating, handoff, digest, skill authoring, plus debugging, TDD and review.",
+  "version": "2.0.0",
   "author": {
     "name": "Michal Juszczyk"
   },
@@ -10,10 +10,11 @@
   "license": "UNLICENSED",
   "keywords": [
     "skills",
-    "spec-driven",
-    "lean-coding",
+    "agent-skills",
+    "grilling",
+    "planning",
     "debugging",
-    "workflows"
+    "review"
   ],
   "skills": "./skills/"
 }
