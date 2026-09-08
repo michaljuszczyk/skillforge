@@ -35,9 +35,9 @@ document type mid-task; if the gap is real, propose a new template afterwards.
    your recommended answer, and wait. Repeat until nothing is silently assumed. Use a grilling
    skill if one is installed; otherwise do it inline — one round, numbered questions,
    recommendations included.
-5. Ask at least one sharp question for any nontrivial request, even one that looks clear. Scale
-   the count to the risk, across: goal, current behavior, target behavior, constraints,
-   non-goals, verification.
+5. Ask only questions whose answers change the scope, the risk, or the artifact. The cost of a
+   wrong assumption decides how many: a clear, low-risk request may need none. As risk grows,
+   cover goal, users, current behavior, target behavior, constraints, non-goals, verification.
 6. Challenge vague scope directly: what would make this fail, what must not change, and what
    observable behavior proves it worked.
 7. Write the artifact from the template. Then stop and hand back.
@@ -64,6 +64,8 @@ stops being the shared record it exists to be.
 
 ## Boundaries
 
+- Do not shape a trivial, fully specified task — a typo, a rename, a one-line fix. Say that it
+  needs no artifact and do the work.
 - Do not plan phases, estimate, or write code here.
 - Do not produce two artifacts in one pass. One request, one document.
 - Do not pad. A one-paragraph brief that answers the questions beats a filled-in template.
