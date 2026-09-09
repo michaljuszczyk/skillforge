@@ -6,7 +6,7 @@
 # Why this shape
 
 Skillforge v1 had 21 skills, an always-on gateway hook injecting ~600 words every session and
-after every compaction, five subagent role files, and three plugin manifests. v2 is 12 skills
+after every compaction, five subagent role files, and three plugin manifests. v2 is 13 skills
 and a ~70-line always-on file. This is the reasoning, so it does not get re-added by accident.
 
 ## What the research says
@@ -34,7 +34,7 @@ because routing is a choice the model makes. This is why `lean-coding`, `lean-ou
 `verification-before-completion` are sections of `AGENTS.md` rather than skills.
 
 **Self-sufficiency over composition.** v1's skills opened by invoking a gateway and referencing
-siblings. When a client repo gets two of twelve skills copied in by hand, those references dangle.
+siblings. When a client repo gets two of thirteen skills copied in by hand, those references dangle.
 Cross-references are suggestions, never dependencies.
 
 **Artifacts are templates.** `roadmap`, `stack`, and `to-prd` were skills competing with `shape`
@@ -93,8 +93,9 @@ them. Do not add cross-skill sequencing to them — that is this skill's job whe
 
 - Whether nested `skills/work/` and `skills/dev/` directories are discovered by every host's
   plugin loader, or only by the `skills` CLI. Verify per host before relying on the plugin path.
-- No behavioral feedback loop: `check.mjs` lints structure and routing, and `writing-skills` sets
-  the bar, but a skill that quietly stops firing will not be noticed by either.
+- Whether `retro` actually gets run. It closes the feedback gap on paper — evidence-based, from
+  the session transcript — but a retrospective nobody invokes is worth nothing, and the pack
+  deliberately has no hook to invoke it. If it goes unused for a month, that is the answer.
 - Cross-skill drift is unlinted. Self-sufficiency means the grilling loop is restated inside
   `shape`, and the delegation contract inside `plan`. When one changes, nothing catches the other
   going stale.

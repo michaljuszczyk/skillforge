@@ -16,6 +16,9 @@ below as their licenses require.
   answer and delete the code.
 - `skills/work/grilling` also takes the fog test — a question you cannot phrase sharply is not a
   frontier question — from `wayfinder`.
+- `skills/work/retro` adapts the improvement taxonomy from `in-progress/retro`: navigation,
+  automated checks over steering instructions, always-on file bloat, tool economy, no-ops
+  (instructions that change no behavior), and information access.
 
 Source: <https://github.com/mattpocock/skills>
 
@@ -91,4 +94,10 @@ No text was copied from these, but the pack is shaped by them:
   design tells behind the "do not look machine-made" rules in `digest`. No text vendored.
 - **addyosmani/agent-skills** (MIT) — the anti-rationalization table pattern, and the idea of
   linting the catalog rather than trusting it.
+- **netresearch/retro-skill** (MIT and CC-BY-SA-4.0) — three ideas behind `retro`: route every
+  finding to a named destination, never write without per-proposal approval, and locate a session
+  transcript **by content rather than by modification time**, because several sessions share one
+  project slug. No text or scripts taken.
+- **bitwarden/ai-plugins `retrospecting`** — retro depth tiers scaled to session size, and asking
+  the user for their own account of where the work dragged rather than inferring it.
 - **agentskills.io** — the format spec the pack is written to.

@@ -1,6 +1,6 @@
 # Skillforge
 
-A small, opinionated skill pack for AI coding agents. Twelve skills, one always-on file, no runtime.
+A small, opinionated skill pack for AI coding agents. Thirteen skills, one always-on file, no runtime.
 Built to work the same on any agent that reads `AGENTS.md` and the
 [Agent Skills spec](https://agentskills.io/specification) — and to keep working when someone
 copies two of its files into a locked-down repo by hand.
@@ -21,6 +21,7 @@ and what never to do. `CLAUDE.md` and `GEMINI.md` point at it.
 | `delegating` | Deciding what to hand to a subagent, and briefing it so the result is verifiable |
 | `handoff` | A compact continuation note for the next agent, written to temp |
 | `digest` | A self-contained HTML page for a human to read, keep, and forward |
+| `retro` | Looking back at a session to find where your attention was spent unnecessarily, and what should become a rule, a check, or a script |
 | `writing-skills` | Authoring skills, harvesting them from real work, and retiring dead ones |
 
 **`skills/dev/`** — only on a codebase:

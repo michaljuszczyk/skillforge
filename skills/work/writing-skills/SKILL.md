@@ -43,6 +43,10 @@ Watch for three signals during real work:
 When one fires, say so and propose the skill in three lines: what breaks without it, the trigger
 vocabulary, and the smallest content that fixes it. Do not write it unprompted.
 
+That is the in-the-moment catch. The session-wide sweep — what should have been a rule, a check,
+or a script rather than a skill at all — belongs to a retrospective skill if one is installed;
+this skill authors what that sweep decides is skill-shaped.
+
 ## Retire — noticing a skill is dead
 
 - The model does the job correctly without it. Delete it.
