@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>:root{color-scheme:light dark}body{margin:0}img{max-width:100%}</style>
+<title>Skillforge Field Manual</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --paper: #edeff1;
+    --surface: #f7f8f9;
+    --ink: #15191d;
+    --ink-soft: #4a565a;
+    --ink-faint: #6e7a7c;
+    --rule: #d2d8da;
+    --rule-soft: #e2e7e8;
+    --accent: #1f5e58;
+    --accent-soft: #dde9e7;
+    --open: #9a5b0b;
+    --open-soft: #f2e7d6;
+    --done: #3b6b44;
+    --done-soft: #dfe9e0;
+    --serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+    --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+    --measure: 68ch;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0f1316;
+      --surface: #171d21;
+      --ink: #dde3e4;
+      --ink-soft: #a3b0b2;
+      --ink-faint: #7d8a8c;
+      --rule: #2b3438;
+      --rule-soft: #222a2e;
+      --accent: #6fb3a9;
+      --accent-soft: #1b2f2d;
+      --open: #d79a4a;
+      --open-soft: #2e2417;
+      --done: #7fae83;
+      --done-soft: #1c2a1e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0f1316;
+    --surface: #171d21;
+    --ink: #dde3e4;
+    --ink-soft: #a3b0b2;
+    --ink-faint: #7d8a8c;
+    --rule: #2b3438;
+    --rule-soft: #222a2e;
+    --accent: #6fb3a9;
+    --accent-soft: #1b2f2d;
+    --open: #d79a4a;
+    --open-soft: #2e2417;
+    --done: #7fae83;
+    --done-soft: #1c2a1e;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding-inline: 22px;
+    padding-block: 0 72px;
+  }
+  .measure { max-width: var(--measure); }
+
+  h1, h2, h3 { font-family: var(--serif); font-weight: 600; text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(2.1rem, 5.4vw, 3.1rem); line-height: 1.08; letter-spacing: -0.015em; }
+  h2 { font-size: clamp(1.35rem, 3vw, 1.7rem); line-height: 1.2; }
+  h3 { font-size: 1.02rem; }
+  p { margin: 0; }
+  code, .mono { font-family: var(--mono); font-size: 0.87em; }
+  code { color: var(--accent); overflow-wrap: break-word; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-faint);
+    font-weight: 500;
+  }
+
+  /* masthead */
+  header.masthead {
+    border-bottom: 2px solid var(--ink);
+    padding-block: 52px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .lede { font-family: var(--serif); font-size: 1.12rem; line-height: 1.5; color: var(--ink-soft); max-width: 60ch; }
+  .lede em { color: var(--ink); font-style: italic; }
+  .facts { display: flex; flex-wrap: wrap; gap: 8px 28px; font-family: var(--mono); font-size: 0.78rem; color: var(--ink-soft); }
+  .facts b { color: var(--ink); font-weight: 600; }
+
+  section { padding-block: 46px 0; display: flex; flex-direction: column; gap: 20px; }
+  .sec-head { display: flex; flex-direction: column; gap: 7px; border-top: 1px solid var(--rule); padding-top: 14px; }
+  section:first-of-type .sec-head { border-top: 0; padding-top: 0; }
+  .sec-note { color: var(--ink-soft); max-width: var(--measure); font-size: 0.95rem; }
+
+  /* skill entries — hairlines, not cards */
+  .group-label {
+    font-family: var(--mono); font-size: 0.74rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--accent); display: flex; align-items: baseline; gap: 10px;
+  }
+  .group-label::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+  .skills { display: flex; flex-direction: column; }
+  .skill {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr 13rem;
+    gap: 6px 24px;
+    padding-block: 17px;
+    border-bottom: 1px solid var(--rule-soft);
+    align-items: start;
+  }
+  .skill:last-child { border-bottom: 0; }
+  .skill-name { font-family: var(--mono); font-weight: 600; font-size: 0.92rem; color: var(--ink); }
+  .skill-does { color: var(--ink-soft); font-size: 0.94rem; }
+  .skill-does b { color: var(--ink); font-weight: 500; }
+  .skill-meta { display: flex; flex-direction: column; gap: 5px; font-size: 0.78rem; font-family: var(--mono); color: var(--ink-faint); }
+  .skill-meta span { display: block; }
+  .skill-meta i { font-style: normal; color: var(--ink-faint); opacity: 0.8; }
+  .skill-meta .to { color: var(--accent); }
+  @media (max-width: 720px) {
+    .skill { grid-template-columns: 1fr; gap: 7px; }
+  }
+
+  /* stage diagram */
+  .stages {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0;
+    border: 1px solid var(--rule);
+    background: var(--surface);
+  }
+  .stage { padding: 14px 13px 16px; border-right: 1px solid var(--rule); display: flex; flex-direction: column; gap: 10px; }
+  .stage:last-child { border-right: 0; }
+  .stage-n { font-family: var(--mono); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; color: var(--ink-faint); }
+  .stage-t { font-family: var(--serif); font-size: 0.98rem; font-weight: 600; line-height: 1.15; }
+  .stage ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+  .stage li { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); }
+  .stage li.opt { color: var(--ink-faint); }
+  .stage-out { font-size: 0.74rem; color: var(--ink-faint); margin-top: auto; padding-top: 8px; border-top: 1px dashed var(--rule); font-family: var(--mono); }
+  @media (max-width: 860px) { .stages { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stage { border-bottom: 1px solid var(--rule); } .stage:nth-child(even) { border-right: 0; } }
+  @media (max-width: 420px) { .stages { grid-template-columns: 1fr; } .stage { border-right: 0; } }
+
+  /* artifact map */
+  .amap { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 720px) { .amap { grid-template-columns: 1fr; } }
+  .amap-col { border-top: 2px solid var(--accent); padding-top: 12px; display: flex; flex-direction: column; gap: 2px; }
+  .amap-col h3 { font-family: var(--mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px; }
+  .art { display: flex; flex-direction: column; gap: 2px; padding-block: 9px; border-bottom: 1px solid var(--rule-soft); }
+  .art:last-child { border-bottom: 0; }
+  .art-p { font-family: var(--mono); font-size: 0.81rem; color: var(--ink); font-weight: 500; overflow-wrap: break-word; }
+  .art-d { font-size: 0.86rem; color: var(--ink-soft); }
+  .art-w { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-faint); }
+
+  /* numbered sequence — order is real information here */
+  .steps { display: flex; flex-direction: column; }
+  .step { display: grid; grid-template-columns: 2.6rem 1fr; gap: 0 18px; padding-block: 18px; border-bottom: 1px solid var(--rule-soft); }
+  .step:last-child { border-bottom: 0; }
+  .step-n { font-family: var(--mono); font-size: 1.1rem; font-weight: 600; color: var(--accent); line-height: 1.3; }
+  .step-b { display: flex; flex-direction: column; gap: 7px; }
+  .step-t { font-family: var(--serif); font-size: 1.08rem; font-weight: 600; }
+  .step-t .via { font-family: var(--mono); font-size: 0.74rem; font-weight: 500; color: var(--ink-faint); margin-left: 9px; letter-spacing: 0.03em; }
+  .step-d { color: var(--ink-soft); font-size: 0.94rem; max-width: 64ch; }
+  .gate { display: inline-flex; align-items: baseline; gap: 8px; font-family: var(--mono); font-size: 0.76rem; background: var(--done-soft); color: var(--done); padding: 4px 9px; align-self: flex-start; border-left: 2px solid var(--done); }
+  .gate b { font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; font-size: 0.68rem; }
+
+  /* ladder — numbered, ordered, precedence is the content */
+  .rungs { display: flex; flex-direction: column; border-left: 2px solid var(--rule); }
+  .rung { display: grid; grid-template-columns: 1.9rem 1fr; gap: 14px; padding: 10px 0 10px 15px; position: relative; }
+  .rung::before { content: ""; position: absolute; left: -5px; top: 18px; width: 8px; height: 8px; background: var(--paper); border: 2px solid var(--accent); border-radius: 50%; }
+  .rung-n { font-family: var(--mono); font-size: 0.82rem; font-weight: 600; color: var(--ink-faint); }
+  .rung-t { font-size: 0.94rem; }
+  .rung-t b { font-weight: 600; }
+  .rung-t span { color: var(--ink-soft); }
+  .rung.terminal::before { background: var(--open); border-color: var(--open); }
+  .rung.terminal .rung-t b { color: var(--open); }
+
+  /* callouts */
+  .note { border-left: 2px solid var(--accent); background: var(--accent-soft); padding: 14px 16px; display: flex; flex-direction: column; gap: 7px; max-width: var(--measure); }
+  .note .eyebrow { color: var(--accent); }
+  .note p { font-size: 0.93rem; color: var(--ink-soft); }
+  .note p b { color: var(--ink); font-weight: 500; }
+  .warn { border-left-color: var(--open); background: var(--open-soft); }
+  .warn .eyebrow { color: var(--open); }
+
+  /* state legend */
+  .legend { display: flex; flex-wrap: wrap; gap: 10px 26px; font-size: 0.86rem; color: var(--ink-soft); }
+  .legend div { display: flex; align-items: baseline; gap: 9px; }
+  .legend .m { font-family: var(--mono); font-weight: 600; color: var(--ink); font-size: 0.9rem; }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 34px; }
+  @media (max-width: 720px) { .two { grid-template-columns: 1fr; } }
+  .plainlist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+  .plainlist li { font-size: 0.92rem; color: var(--ink-soft); padding-left: 15px; position: relative; }
+  .plainlist li::before { content: "—"; position: absolute; left: 0; color: var(--ink-faint); }
+  .plainlist li b { color: var(--ink); font-weight: 500; }
+
+  footer { margin-top: 54px; border-top: 1px solid var(--rule); padding-top: 16px; font-family: var(--mono); font-size: 0.75rem; color: var(--ink-faint); display: flex; flex-wrap: wrap; gap: 6px 22px; }
+  a { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">Skillforge · v2.3.0 · 14 skills, zero runtime</div>
+    <h1>Skillforge Field Manual</h1>
+    <p class="lede">Fourteen markdown skills and one always-on agreement. The skills supply
+      <em>judgment</em>; the artifacts under <code>context/</code> are what survives the session. Nothing
+      here assumes anything else here is installed.</p>
+    <div class="facts">
+      <span><b>9</b> work skills</span>
+      <span><b>5</b> dev skills</span>
+      <span><b>8</b> shape templates</span>
+      <span><b>11</b> artifact types</span>
+      <span><b>1</b> always-on file</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Section 01</div>
+      <h2>The skills</h2>
+      <p class="sec-note">Each row: what it does, what it leaves behind, and where work usually goes
+        next. <span class="mono">next →</span> is the common path, not a requirement — routing is a
+        choice the model makes, and none of these call each other.</p>
+    </div>
+
+    <div class="group-label">skills/work — any kind of work</div>
+    <div class="skills">
+      <div class="skill">
+        <div class="skill-name">grilling</div>
+        <div class="skill-does">Interrogates you round by round until a plan or decision has <b>no unstated assumptions</b>. Facts are its job; decisions stay yours.</div>
+        <div class="skill-meta"><span><i>leaves</i> nothing — no file</span><span class="to">next → shape</span></div>
+      </div>
+      <div class="skill">
+        <div class="skill-name">shape</div>
+        <div class="skill-does">Turns a raw request into <b>one written artifact</b> — brief, roadmap, decision record, PRD, vision, stack register, test strategy, or opportunity map. Resolves the open decisions first, then writes.</div>
+        <div class="skill-meta"><span><i>leaves</i> one artifact</span><span class="to">next → phasing / executing</span></div>
+      </div>
+      <div class="skill">
+        <div class="skill-name">phasing</div>
+        <div class="skill-does">Writes and then works a <b>phased plan</b> — per-phase verification and a durable checklist that survives a new session or a compaction. Also the resume path.</div>
+        <div class="skill-meta"><span><i>leaves</i> <span class="mono">plan.md</span></span><span class="to">next → executing / tdd</span></div>
+      </div>
+      <div class="skill">
+        <div class="skill-name">executing</div>
+        <div class="skill-does">Steers a shaped change to done <b>without drifting from it</b>: readiness check, an ordered ladder for resolving ambiguity from the written record, and closing the loop. Optional — <code>shape</code> is the backbone.</div>
+        <div class="skill-meta"><span><i>leaves</i> evidence, updated artifacts</span><span class="to">next → review</span></div>
+      </div>
+      <div class="skill">
+        <div class="skill-name">delegating</div>
+        <div class="skill-does">Decides what to hand a subagent and how to brief it — <b>bounded task, own paths, report contract</b>, and the cheapest model that can do it.</div>
+        <div class="skill-meta"><span><i>leaves</i> a verified result</span><span class="to">next → back to caller</span></div>
+      </div>
+      <div class="skill">
+        <div class="skill-name">handoff</div>
+        <div class="skill-does">A compact continuation note so a <b>fresh agent</b> can pick the work up safely. Written for an agent, not a person. Goes to temp, not the repo.</div>
+        <div class="skill-meta"><span><i>leaves</i> a temp note</span><span class="to">next → new session</span></div>
+      </div>
+      <div class="skill">
+        <div class="skill-name">digest</div>
+        <div class="skill-does">One self-contained HTML page a <b>person</b> can read, keep and forward — recap, explainer, decision write-up, status report.</div>
+        <div class="skill-meta"><span><i>leaves</i> a page</span><span class="to">next → send it</span></div>
+      </div>
+      <div class="skill">
+        <div class="skill-name">retro</div>
+        <div class="skill-does">Looks back at finished work and proposes changes to the <b>setup, not the work</b> — where your attention went unnecessarily, which corrections repeated, what should become a rule, a check or a script.</div>
+        <div class="skill-meta"><span><i>leaves</i> ranked proposals</span><span class="to">next → writing-skills</span></div>
+      </div>
+      <div class="skill">
+        <div class="skill-name">writing-skills</div>
+        <div class="skill-does">Authors, edits or <b>retires</b> a skill — including noticing from the session that one is needed. New artifact types are templates here, never new skills.</div>
+        <div class="skill-meta"><span><i>leaves</i> a skill, or removes one</span><span class="to">next → done</span></div>
+      </div>
+    </div>
+
+    <div class="group-label" style="margin-top:20px">skills/dev — only on a codebase</div>
+    <div class="skills">
+      <div class="skill">
+        <div class="skill-name">orienting</div>
+        <div class="skill-does">Gets up to speed in an unfamiliar repo and <b>proves the commands by running them</b>. Finds the conventions in force, the hot paths, and what nobody tests. Stops before planning a change.</div>
+        <div class="skill-meta"><span><i>leaves</i> understanding</span><span class="to">next → shape / phasing</span></div>
+      </div>
+      <div class="skill">
+        <div class="skill-name">debugging</div>
+        <div class="skill-does">Builds the <b>reproduction loop first</b>, then one falsifiable hypothesis at a time, with a three-strikes stop. No fix before the cause is named.</div>
+        <div class="skill-meta"><span><i>leaves</i> a repro = the regression test</span><span class="to">next → tdd / review</span></div>
+      </div>
+      <div class="skill">
+        <div class="skill-name">tdd</div>
+        <div class="skill-does">One behavior at a time: write the failing test, <b>watch it fail for the right reason</b>, then make it pass. Refactoring is left to review.</div>
+        <div class="skill-meta"><span><i>leaves</i> tests + the behavior</span><span class="to">next → review</span></div>
+      </div>
+      <div class="skill">
+        <div class="skill-name">spike</div>
+        <div class="skill-does">Answers <b>“can this even work”</b> with the smallest throwaway that settles it — then keeps the answer and deletes the code. Not for a bug, and not for known-feasible work.</div>
+        <div class="skill-meta"><span><i>leaves</i> an answer, no code</span><span class="to">next → shape</span></div>
+      </div>
+      <div class="skill">
+        <div class="skill-name">review</div>
+        <div class="skill-does">A <b>gate</b>: findings first, severity-ordered, each with a location and a fix. Judges an implementation against its spec, or someone else's review against the code.</div>
+        <div class="skill-meta"><span><i>leaves</i> findings, or a clean verdict</span><span class="to">next → executing / handoff</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Section 02</div>
+      <h2>How they interact</h2>
+      <p class="sec-note">Six stages, not a pipeline. Skills in grey are reached only when the work
+        calls for them, and any stage can send you back a column — a spike that fails returns to
+        deciding, a review finding returns to building.</p>
+    </div>
+
+    <div class="stages">
+      <div class="stage">
+        <div class="stage-n">01</div>
+        <div class="stage-t">Understand</div>
+        <ul><li>orienting</li><li class="opt">spike</li></ul>
+        <div class="stage-out">→ facts, proven commands</div>
+      </div>
+      <div class="stage">
+        <div class="stage-n">02</div>
+        <div class="stage-t">Decide</div>
+        <ul><li>grilling</li><li>shape</li></ul>
+        <div class="stage-out">→ vision, roadmap, brief</div>
+      </div>
+      <div class="stage">
+        <div class="stage-n">03</div>
+        <div class="stage-t">Sequence</div>
+        <ul><li>phasing</li></ul>
+        <div class="stage-out">→ plan.md + checklist</div>
+      </div>
+      <div class="stage">
+        <div class="stage-n">04</div>
+        <div class="stage-t">Build</div>
+        <ul><li>executing</li><li>tdd</li><li class="opt">debugging</li><li class="opt">delegating</li></ul>
+        <div class="stage-out">→ code + evidence</div>
+      </div>
+      <div class="stage">
+        <div class="stage-n">05</div>
+        <div class="stage-t">Judge</div>
+        <ul><li>review</li></ul>
+        <div class="stage-out">→ findings or a verdict</div>
+      </div>
+      <div class="stage">
+        <div class="stage-n">06</div>
+        <div class="stage-t">Close</div>
+        <ul><li>retro</li><li class="opt">handoff</li><li class="opt">digest</li><li class="opt">writing-skills</li></ul>
+        <div class="stage-out">→ a better setup</div>
+      </div>
+    </div>
+
+    <div class="note">
+      <div class="eyebrow">The one rule that shapes all of this</div>
+      <p><b>No skill assumes another is installed.</b> Copy two of the fourteen into a locked-down
+        repo and they still work. That is why the grilling loop is restated inside <code>shape</code>,
+        and why every cross-reference reads “if one is installed” rather than naming a dependency.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Section 03</div>
+      <h2>What the artifacts are</h2>
+      <p class="sec-note">The skills are how; these are what survives. <code>foundation/</code> is
+        standing context, rarely written and often read. <code>changes/&lt;id&gt;/</code> is one unit of
+        work, where <code>&lt;id&gt;</code> is <code>NN-slug</code> — the same id the roadmap row carries.</p>
+    </div>
+
+    <div class="amap">
+      <div class="amap-col">
+        <h3>context/foundation/ — standing</h3>
+        <div class="art"><div class="art-p">vision.md</div><div class="art-d">Direction, and a <em>ranked</em> priority order so conflicts between two good things have an answer. Cannot authorise new scope.</div><div class="art-w">shape · owner-written</div></div>
+        <div class="art"><div class="art-p">roadmap.md</div><div class="art-d">Change index. Ids are the change-ids; a status column closes the loop.</div><div class="art-w">shape</div></div>
+        <div class="art"><div class="art-p">tech-stack.md</div><div class="art-d">What was chosen and which hard barrier forced it. Chosen by elimination, not preference.</div><div class="art-w">shape</div></div>
+        <div class="art"><div class="art-p">test-strategy.md</div><div class="art-d">Ranked risks, which level holds each, and what is deliberately untested.</div><div class="art-w">shape</div></div>
+        <div class="art"><div class="art-p">decisions/&lt;nnn&gt;-&lt;slug&gt;.md</div><div class="art-d">One contested, hard-to-reverse choice each, with a one-line <code>Standing rule</code> so the set is greppable.</div><div class="art-w">shape</div></div>
+        <div class="art"><div class="art-p">opportunities/&lt;slug&gt;.md</div><div class="art-d">Build / buy / thin complement / wait — before a brief exists.</div><div class="art-w">shape</div></div>
+        <div class="art"><div class="art-p">prd-&lt;slug&gt;.md</div><div class="art-d">Product intent, when that and not the technical approach is what is unclear.</div><div class="art-w">shape</div></div>
+      </div>
+      <div class="amap-col">
+        <h3>context/changes/&lt;id&gt;/ — one change</h3>
+        <div class="art"><div class="art-p">brief.md</div><div class="art-d">Problem, goal, non-goals, constraints, risks, and the verification that proves it worked. Non-goals and verification are mandatory.</div><div class="art-w">shape</div></div>
+        <div class="art"><div class="art-p">plan.md</div><div class="art-d">Phases, each with its own runnable verification, plus the progress checklist that is the durable state.</div><div class="art-w">phasing</div></div>
+        <div class="art"><div class="art-p">questions.md</div><div class="art-d">Parked blocking questions under stable ids (<code>q1</code>, <code>q2</code>), each with status and what it holds up.</div><div class="art-w">executing</div></div>
+        <div class="art"><div class="art-p">calls.md</div><div class="art-d">Provisional decisions made when no owner was reachable — the question, the answer taken, the rung it came from, what would overturn it.</div><div class="art-w">executing</div></div>
+      </div>
+    </div>
+
+    <div class="legend" style="margin-top:4px">
+      <div><span class="m">[ ]</span> not started — nothing touched</div>
+      <div><span class="m">[~]</span> state unknown — run its Verify to find out</div>
+      <div><span class="m">[x]</span> verified — its Verify passed, in a session</div>
+    </div>
+    <p class="sec-note">The middle marker is the point: it is what a compaction boundary actually
+      produces. A resumed run settles <code>[~]</code> by running that phase's verification — never by
+      assuming it finished, and never by redoing it blind.</p>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Section 04</div>
+      <h2>The ideal full process</h2>
+      <p class="sec-note">Seven steps, in order, because here the order is the information. Each has
+        a gate — the observable thing that has to exist before the next step is worth starting. Most
+        real work skips steps; skipping a step is a decision to state, skipping its gate is not.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div class="step-b">
+          <div class="step-t">Decide it is worth doing<span class="via">opportunity map</span></div>
+          <div class="step-d">Classify the friction against its real frequency and cost, then choose build, buy, a thin complement, or wait. Most “we should build a tool for this” ideas lose to the default that already exists.</div>
+          <div class="gate"><b>gate</b> a verdict, and the smallest next step that tests it</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div class="step-b">
+          <div class="step-t">Write the direction down once<span class="via">vision · tech-stack</span></div>
+          <div class="step-d">The standing artifacts that later answer questions nobody thought to ask. Vision's ranked priority order is what makes it usable at a fork rather than decorative.</div>
+          <div class="gate"><b>gate</b> two goods in tension have a stated winner</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div class="step-b">
+          <div class="step-t">Divide the work<span class="via">roadmap</span></div>
+          <div class="step-d">An index, not a plan: each entry small enough to brief and build on its own, in dependency order, with the pre-mortem and devil's-advocate answers written down honestly. Entries reserve their change-ids here.</div>
+          <div class="gate"><b>gate</b> every entry has an observable “done when”</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div class="step-b">
+          <div class="step-t">Shape one change<span class="via">grilling → shape</span></div>
+          <div class="step-d">Interrogate until nothing is silently assumed, confirm the settled decisions with the owner, then write the brief. It records their decisions, not your inferences.</div>
+          <div class="gate"><b>gate</b> non-goals named, verification runnable</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">5</div>
+        <div class="step-b">
+          <div class="step-t">Sequence it<span class="via">phasing</span></div>
+          <div class="step-d">Phases that each leave the codebase working, ordered so the phase that could invalidate the plan comes first. Named files per phase, exact commands, no placeholders.</div>
+          <div class="gate"><b>gate</b> every phase names its own verification</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">6</div>
+        <div class="step-b">
+          <div class="step-t">Build it without drifting<span class="via">executing + tdd / debugging</span></div>
+          <div class="step-d">One phase at a time, marked <code>[~]</code> before it starts and <code>[x]</code> only once its verification passes with the output shown. Every changed line traces to something the brief asks for; discovered out-of-scope work gets written down, not done.</div>
+          <div class="gate"><b>gate</b> fresh output, this session, per phase</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">7</div>
+        <div class="step-b">
+          <div class="step-t">Judge, then close the loop<span class="via">review → retro</span></div>
+          <div class="step-d">Review against the brief rather than against taste. Then the record says what is now true: roadmap status updated, evidence attached, anything durable and surprising written as a decision record, and anything the work proved wrong amended in the brief.</div>
+          <div class="gate"><b>gate</b> every requirement traced, every non-goal still undone</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note warn">
+      <div class="eyebrow">Where it stops being ideal</div>
+      <p>A trivial, fully specified task — a typo, a rename, a one-line fix — needs none of this, and
+        gating it is ceremony. <b>The floor is protected by judgment, not by structure:</b> both
+        <code>shape</code> and <code>executing</code> say to skip themselves on work too small to
+        deserve them, and nothing enforces that but the reading.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Section 05</div>
+      <h2>The ambiguity ladder</h2>
+      <p class="sec-note">What <code>executing</code> climbs when the artifact does not settle a fork.
+        Stop at the first rung that answers, and say which one did. When two rungs answer differently
+        the higher wins — and the disagreement gets named, because a real conflict between artifacts
+        is a defect in them rather than a tie to break quietly.</p>
+    </div>
+
+    <div class="rungs">
+      <div class="rung"><div class="rung-n">1</div><div class="rung-t"><b>The brief</b> <span>— goal, non-goals, verification.</span></div></div>
+      <div class="rung"><div class="rung-n">2</div><div class="rung-t"><b>The plan</b> <span>— a later phase has often already decided it.</span></div></div>
+      <div class="rung"><div class="rung-n">3</div><div class="rung-t"><b>The roadmap</b> <span>— does a neighbouring change already own this?</span></div></div>
+      <div class="rung"><div class="rung-n">4</div><div class="rung-t"><b>The standing registers</b> <span>— the stack for conventions in force, the test strategy for what is worth proving.</span></div></div>
+      <div class="rung"><div class="rung-n">5</div><div class="rung-t"><b>The vision</b> <span>— its priority order breaks ties between competing goods. It never authorises new scope.</span></div></div>
+      <div class="rung"><div class="rung-n">6</div><div class="rung-t"><b>The decision records</b> <span>— has this argument already been had and settled?</span></div></div>
+      <div class="rung"><div class="rung-n">7</div><div class="rung-t"><b>The blocker register</b> <span>— has it already been asked, and has an answer come back since?</span></div></div>
+      <div class="rung terminal"><div class="rung-n">8</div><div class="rung-t"><b>The owner</b> <span>— or, on a declared unattended run, decide only where the answer is <em>grounded</em> (name the rung, quote the line) and <em>bounded</em> (being wrong costs no more than redoing this change). Otherwise park it and carry on with what it does not block.</span></div></div>
+    </div>
+
+    <div class="two" style="margin-top:8px">
+      <div class="note">
+        <div class="eyebrow">Blocking is an outcome</div>
+        <p>A fork the whole ladder cannot settle usually means <b>a requirement is wrong or
+          missing</b>, and knowing that beats a confident guess. Attended: ask. Unattended: park it,
+          log it, and finish everything it does not hold up.</p>
+      </div>
+      <div class="note warn">
+        <div class="eyebrow">Unattended is declared, never inferred</div>
+        <p>Only the invocation or an <code>Execution mode: unattended</code> line in the always-on file
+          turns it on. Everything else is attended, <b>ambiguity included</b> — failing to find a way
+          to ask is not permission to decide.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Section 06</div>
+      <h2>What is deliberately absent</h2>
+    </div>
+    <div class="two">
+      <ul class="plainlist">
+        <li><b>No router or gateway skill.</b> Hosts already inject every skill's name and description; the always-on file carries the routing rule in two lines.</li>
+        <li><b>No estimates.</b> <code>phasing</code> refuses them unless asked. Sequence and verification are the value.</li>
+        <li><b>No orchestration between skills.</b> <code>tdd</code>, <code>debugging</code> and <code>review</code> are independent tools; <code>executing</code> names the gate each step must pass and defers to whatever is installed.</li>
+      </ul>
+      <ul class="plainlist">
+        <li><b>No new skill for a new document type.</b> Artifacts are templates under <code>shape/references/</code>, so a new type never becomes a new routing competitor.</li>
+        <li><b>No invariant as a skill.</b> Anything that must hold on every response lives in the always-on file, because routing is a choice the model makes.</li>
+        <li><b>No runtime in the core.</b> Pure markdown. The one script is optional and nothing depends on it.</li>
+      </ul>
+    </div>
+    <div class="note warn">
+      <div class="eyebrow">Known open gaps, as of v2.3.0</div>
+      <p><code>questions.md</code> has no attended writer yet — shaping is meant to mint the register
+        at brief time so <code>q</code> ids exist from the start. <code>calls.md</code> has no rung, so
+        a second unattended run can re-decide a settled fork. The roadmap's <code>ready</code> and
+        <code>dropped</code> states have no writer. All three are recorded in <code>docs/DESIGN.md</code>
+        rather than quietly outstanding.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>michaljuszczyk/skillforge</span>
+    <span>v2.3.0</span>
+    <span>AGENTS.md wins where a skill conflicts with it</span>
+  </footer>
+
+</div>
+</body>
+</html>

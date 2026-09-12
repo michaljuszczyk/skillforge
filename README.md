@@ -37,6 +37,9 @@ and what never to do. `CLAUDE.md` and `GEMINI.md` point at it.
 
 **`addons/`** — empty by design. See its README for when something belongs there.
 
+**`docs/FIELD-MANUAL.html`** — one page covering every skill, the artifacts they write, how
+they hand off, and the full process end to end. Open it in a browser.
+
 ## Design rules
 
 1. **Judgment, not mechanics.** A skill encodes decision criteria, rubrics, and definitions of
