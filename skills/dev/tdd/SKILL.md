@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: Implement one behavior at a time test-first — write the failing test, watch it fail for the right reason, then make it pass. Use when the next piece of work has observable behavior worth pinning: a feature through a public boundary, a bug with a reproducible case, or a refactor whose behavior must not change. Triggers on TDD, test-first, red-green, or write the test first.
+description: "Implement one behavior at a time test-first — write the failing test, watch it fail for the right reason, then make it pass. Use when the next piece of work has observable behavior worth pinning: a feature through a public boundary, a bug with a reproducible case, or a refactor whose behavior must not change. Triggers on TDD, test-first, red-green, or write the test first."
 ---
 
 # TDD

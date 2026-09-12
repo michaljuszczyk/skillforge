@@ -1,6 +1,6 @@
 ---
 name: shape
-description: Turn a raw request into a written artifact — a change brief, an epic roadmap, a decision record, or a PRD — by resolving the open decisions first. Use before planning or building when the work is not yet crisp: vague scope, unclear goal, competing options, or an epic that has not been broken down. Triggers on shape, scope, frame, clarify, brief, roadmap, break an initiative into changes, ADR, decide between, or write a PRD.
+description: "Turn a raw request into a written artifact — a change brief, an epic roadmap, a decision record, or a PRD — by resolving the open decisions first. Use before planning or building when the work is not yet crisp: vague scope, unclear goal, competing options, or an epic that has not been broken down. Triggers on shape, scope, frame, clarify, brief, roadmap, break an initiative into changes, ADR, decide between, or write a PRD."
 ---
 
 # Shape
