@@ -1,7 +1,7 @@
 {
   "name": "skillforge",
-  "description": "Fourteen skills and one always-on working agreement: grilling, shaping, planning, executing, delegating, handoff, digest, retro, skill authoring, plus orienting, debugging, TDD, spike and review.",
-  "version": "2.2.0",
+  "description": "Fourteen skills and one always-on working agreement: grilling, shaping, phasing, executing, delegating, handoff, digest, retro, skill authoring, plus orienting, debugging, TDD, spike and review.",
+  "version": "2.3.0",
   "author": {
     "name": "Michal Juszczyk"
   },
@@ -12,7 +12,7 @@
     "skills",
     "agent-skills",
     "grilling",
-    "planning",
+    "phasing",
     "debugging",
     "review"
   ]

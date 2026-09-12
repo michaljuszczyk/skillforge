@@ -6,7 +6,7 @@ all else.
 ```markdown
 # <change-id>: <title> — plan
 
-**Brief**: `./brief.md` · **Status**: in progress | blocked | done
+**Brief**: `./brief.md` · **Status**: in progress | blocked (q2) | done
 
 ## Approach
 Two or three sentences on the strategy and why it beat the alternative. Not a restatement of
@@ -27,8 +27,14 @@ What is still unverified, and what each one would change if it turns out otherwi
 ...
 
 ## Progress checklist
-- [ ] 1. <phase name>
-- [ ] 2. <phase name>
+Three states, and the middle one is the point:
+- `[ ]` not started — nothing was touched.
+- `[~]` state unknown — this phase was underway when the session ended.
+- `[x]` verified — its `Verify` passed, in a session, and the `Log` says so.
+
+- [x] 1. <phase name>
+- [~] 2. <phase name>
+- [ ] 3. <phase name>
 
 ## Log
 Append only. One line per phase completed or plan change:
@@ -41,8 +47,17 @@ Append only. One line per phase completed or plan change:
 - `Verify` is mandatory per phase and must be runnable without a human. "Check it works" is not
   verification.
 - `Touches` lists real paths. If you do not know them yet, the phase needs investigation first.
-- Tick a checklist box only after its `Verify` has passed in the current session.
+- Mark a phase `[~]` before starting it, and `[x]` only once its `Verify` has passed in the
+  current session. The `[~]` costs one edit and is what makes an interrupted run recoverable.
+- `[~]` means the phase's true state is unknown, not that it is half done. Run its `Verify`
+  first and let the result decide: passing means mark it `[x]` and move on; failing means find
+  what landed before redoing anything. Never assume, and never redo a phase blind.
 - The `Log` records deviations. A plan followed exactly needs one line per phase; a plan that
   changed needs the reason.
+- `blocked` is not a state you choose. It is what is true when an open question blocks the
+  current phase, and the status names that question: `blocked (q2)`. Where the change keeps a
+  register of open questions, that register is the truth and this line only labels it — with
+  nothing open, the status is `in progress`. A plan that says blocked without naming what blocks
+  it is a plan nobody else can unblock.
 - Keep phases at three to seven. More means the change should have been split; fewer usually
   means a phase is hiding several.

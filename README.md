@@ -17,7 +17,7 @@ and what never to do. `CLAUDE.md` and `GEMINI.md` point at it.
 |---|---|
 | `grilling` | Being interrogated round by round until a plan or decision has no unstated assumptions. Writes nothing |
 | `shape` | Turning a raw request into an artifact — eight templates, from an opportunity map through brief, roadmap, PRD, vision, stack register, test strategy and decision record |
-| `plan` | Phases with per-phase verification and a durable checklist that survives a new session |
+| `phasing` | Phases with per-phase verification and a durable checklist that survives a new session |
 | `executing` | Carrying a shaped change through to done without drifting from it — gate, ambiguity ladder, closing the loop |
 | `delegating` | Deciding what to hand to a subagent, and briefing it so the result is verifiable |
 | `handoff` | A compact continuation note for the next agent, written to temp |

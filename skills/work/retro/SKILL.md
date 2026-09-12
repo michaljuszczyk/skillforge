@@ -76,7 +76,8 @@ Findings ranked by attention saved, each as:
 - **Whose hands** — yours to apply, or the user's to set up.
 
 Then take them one at a time: approve, edit, or reject. Apply only what is approved, and hand
-skill-shaped changes to a skill-authoring skill rather than writing them freehand.
+skill-shaped changes to a skill-authoring skill if one is installed, rather than writing them
+freehand; with none installed, apply them yourself against the rules the pack already states.
 
 ## Boundaries
 

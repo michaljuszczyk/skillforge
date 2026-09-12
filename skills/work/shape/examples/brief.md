@@ -4,7 +4,7 @@ A real brief at the level of detail shaping should produce. Note what is *absent
 no file paths, no estimates — those belong to planning.
 
 ```markdown
-# c3: CSV export for the reports view
+# 03-csv-export: CSV export for the reports view
 
 ## Problem
 Ops copy numbers out of the reports table by hand every Monday to build the weekly deck. They

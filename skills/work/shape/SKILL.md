@@ -28,7 +28,7 @@ route, to ask questions, or to answer a clarification. Read `examples/brief.md` 
 If `context/foundation/vision.md` already exists, read it before asking anything — it settles
 some questions outright, and an answer that contradicts it is worth naming out loud.
 
-If none of the four fits, say so and write plain structured prose instead — a forced template
+If none of these fits, say so and write plain structured prose instead — a forced template
 produces a worse document than no template. Do not invent a new document type mid-task; if the
 gap keeps recurring, propose a new template afterwards.
 
@@ -60,10 +60,12 @@ Artifacts live in the repo, always, so they outlive the session and the agent:
 - Project-wide or multi-change work → `context/foundation/`
 - A single change → `context/changes/<change-id>/`
 
-**Minting a change-id.** `NN-slug` — `NN` is the next unused two-digit number under
-`context/changes/`, the slug is two or three words from the goal: `03-csv-export`. List the
-directory before choosing. Never reuse a number and never write into an existing change's
-directory. Roadmap entries map onto the same scheme, in the order the roadmap lists them.
+**Minting a change-id.** `NN-slug` — the slug is two or three words from the goal, and `NN` is
+the next number claimed by neither `context/changes/` nor the roadmap. Read both before
+choosing: a roadmap reserves its ids at the moment it is written and creates no directories
+until each change is briefed, so the directory listing alone will hand you an id another change
+already owns. Never reuse a number and never write into an existing change's directory.
+Briefing a roadmap entry keeps the id that entry already carries.
 
 Create the directories if they do not exist. The only override is the user naming a different
 location — not a guess that a repo would prefer otherwise. An artifact written outside the repo

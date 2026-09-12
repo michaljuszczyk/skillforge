@@ -14,8 +14,8 @@ Nothing below assumes the work is code.
 ## The gate
 
 Before the first edit, find the written record and check it holds: `context/changes/<id>/plan.md`,
-`context/changes/<id>/brief.md`, the matching row in `context/foundation/roadmap.md`, and
-`context/foundation/vision.md`. Read what exists.
+`context/changes/<id>/brief.md`, `context/changes/<id>/questions.md`, the matching row in
+`context/foundation/roadmap.md`, and `context/foundation/vision.md`. Read what exists.
 
 Five conditions. All of them, or you do not start:
 
@@ -24,12 +24,13 @@ Five conditions. All of them, or you do not start:
 | **Goal** | One sentence, lifted from the artifact — not composed by you just now |
 | **Non-goals** | The tempting adjacent work, named, so drift is distinguishable from progress |
 | **Verification** | An observable result, with the command or check that produces it |
-| **Boundary** | The files, areas, or systems this change is allowed to touch |
-| **Open questions** | None left whose answer would change what gets built |
+| **Boundary** | The files, areas, or systems this change is allowed to touch. The plan carries it, per phase, as `Touches`; a change with no plan takes it from the brief's constraints and non-goals |
+| **Open questions** | None left whose answer would change what gets built. `questions.md` is the register — an entry still `open` against this work fails the gate |
 
-Missing one? Say which, say what closes it — usually one round of shaping — and stop there. Do
-not fill the gap yourself. An artifact you completed from your own inference records your
-opinion, and the next reader will take it for the owner's.
+Missing one? Say which, say what closes it, and stop there. For four of them that is a round of
+shaping; for an open question it is an answer, and resuming past one is how a change quietly
+becomes whatever the last run guessed. Do not fill the gap yourself. An artifact you completed
+from your own inference records your opinion, and the next reader will take it for the owner's.
 
 If the user says to proceed anyway, proceed. State in one line what is unverified, and write it
 into the change folder as an assumption before starting, so the gap outlives the session.
@@ -72,12 +73,15 @@ that does, and say which rung answered and what it said:
 6. **The decision records** — has this argument already been had? Grep
    `context/foundation/decisions/` for `Standing rule` first: that returns every rule in force
    without opening a single file.
-7. **The owner** — or, on a declared unattended run, the rules in the next section.
+7. **The blocker register** — `context/changes/<id>/questions.md`. Has this already been asked,
+   and has an answer come back since? A question re-derived under fresh wording is a question
+   the owner gets asked twice, and on a box where restarts are routine that is forever.
+8. **The owner** — or, on a declared unattended run, the rules in the next section.
 
 What keeps the ladder honest:
 
 - Vision resolves conflict between goods already agreed. It cannot authorise new scope. If what
-  you draw from it would add work, you are on rung 7, not rung 5.
+  you draw from it would add work, you are on rung 8, not rung 5.
 - A question whose answer changes *what* gets built, and that no rung answers, is a blocker.
   Stop and ask. Choosing one and flagging it afterwards is how a change becomes a different one.
   Unattended, this is the one case the next section does not let you decide either.
@@ -88,7 +92,7 @@ What keeps the ladder honest:
 
 ## Unattended runs
 
-Rung 7 assumes an owner is reachable. Sometimes they are not — a queued job, a scheduled run, an
+Rung 8 assumes an owner is reachable. Sometimes they are not — a queued job, a scheduled run, an
 executor on a box somewhere — and there "stop and ask" degrades to "stop", which is worse than a
 recorded call.
 
@@ -113,16 +117,27 @@ conditions can:
 
 Both hold: decide, record it as provisional, carry on. Either fails: park it.
 
-**Recording a provisional call.** One entry per call in the change folder — the question, the
-answer taken, the rung and the line it came from, the alternative rejected, and what would
-overturn it. The owner has to be able to audit the whole run from these entries alone, without
-reconstructing your reasoning. A provisional call nobody wrote down is an ordinary silent
-assumption wearing a better name.
+**Recording a provisional call.** One entry per call, appended to
+`context/changes/<id>/calls.md` — the question, the answer taken, the rung and the line it came
+from, the alternative rejected, and what would overturn it. The owner has to be able to audit
+the whole run from these entries alone, without reconstructing your reasoning. A provisional
+call nobody wrote down is an ordinary silent assumption wearing a better name.
 
-**Parking a question.** Write it where the run's output will actually be read, then carry on with
+**Parking a question.** Append it to `context/changes/<id>/questions.md` under a short stable
+id — `q1`, `q2`, the next unused in that file, never renumbered and never reused — with its
+status (`open`), what it blocks, and which rungs you already tried. Then carry on with
 everything that does not depend on it. Finish the independent phases, verify them, and report
-blocked with the question and what it holds up. A run that stalls entirely on one unanswerable
-question is wasted; a run that guesses at scope is worse than wasted.
+blocked, naming each question by its id. A run that stalls entirely on one unanswerable question
+is wasted; a run that guesses at scope is worse than wasted.
+
+When an answer comes back it is written against that same id and the status becomes `answered`.
+That is the whole point of the id, and what rung 7 reads: without it, parking is write-only and
+the next run asks the same thing in different words.
+
+If the parked question blocks the phase in hand, say so where a resuming agent looks first: the
+plan's `**Status**` becomes `blocked (q2)`, naming the id. The register stays the truth and the
+plan only carries the label, so the two cannot drift into disagreeing — and a resume that reads
+only the plan still learns it must not start.
 
 The gate itself does not soften. An artifact missing its goal, its verification, or its boundary
 cannot be repaired by inference, and unattended is precisely when no one will catch it — report
@@ -144,14 +159,19 @@ the ladder answers under both conditions above has stopped being a blocker.
 
 A change is not done when it works. It is done when the record says what is now true:
 
-- The roadmap row's `status`, updated.
+- The roadmap row's `status`, updated — and the plan's own `**Status**`, which becomes `done`
+  once its last phase is verified. Nothing else ever writes that value, and a plan left forever
+  at `in progress` is one a later resume can pick up and start re-running.
 - The evidence — what was run, what it printed, from this session.
 - Anything durable and surprising that got settled on the way: a decision record.
 - Anything the work proved wrong in the brief: amended there, not left to mislead the next
   reader.
 - What you deliberately did not do, in one line.
-- Every provisional call made without an owner, listed together so they can be reviewed in one
-  pass — or confirmed, which is what turns the good ones into decision records.
+- Every provisional call made without an owner, from `calls.md`, listed together so they can be
+  reviewed in one pass — or confirmed, which is what turns the good ones into decision records.
+- Every question still `open` in `questions.md`, by id, with what it blocks. When phases came
+  back blocked, these are the run's real output, and answering them is what unblocks the next
+  one.
 
 ## Boundaries
 

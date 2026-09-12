@@ -47,8 +47,8 @@ loaded, and a new document type no longer means a new routing competitor.
 |---|---|
 | Gateway/router skill + session hook | Most hosts already inject every skill's name and description. `AGENTS.md` carries the routing rule in two lines and is read everywhere |
 | `review` rebuilt around a rubric | Hosts have review commands; the mechanics are theirs. The severity model, the omission rule and the findings format are the part worth owning |
-| `subagent-driven-development`, `implement` | Host orchestration (agents, workflows) plus `plan`'s checklist cover it. The briefing judgment lives in `delegating` |
-| `research` | Folded into `plan`, where the findings are actually used |
+| `subagent-driven-development`, `implement` | Host orchestration (agents, workflows) plus `phasing`'s checklist cover it. The briefing judgment lives in `delegating` |
+| `research` | Folded into `phasing`, where the findings are actually used |
 | `critique` | `grilling` stress-tests before a decision; `review` judges after work. A third interrogation skill only split the routing |
 | Subagent role files | Host-specific. The brief contract in `delegating` is the portable part |
 | An eval framework | Worth having, but it is a second project. `scripts/check.mjs` buys the routing-collision check, which is the failure mode that actually bites |
@@ -78,7 +78,7 @@ whether the change is code or not, and a `dev/` placement would have left non-co
 execution discipline at all.
 
 Its core is the **gate**, not the sequence. Sequencing is orchestration, which hosts already do
-and which would have put it in direct trigger competition with `plan`. What no host supplies is
+and which would have put it in direct trigger competition with `phasing`. What no host supplies is
 the refusal to start on a hollow artifact, the ladder that resolves ambiguity from the written
 record instead of from inference, and the rule that the record gets updated when work lands.
 The sequence is present, but each step is a gate with named evidence, not a dispatch table.
@@ -115,6 +115,21 @@ artifact is the one input inference cannot repair, and unattended is exactly whe
 watching for it. Parking rather than halting comes from the same place: a run that stops dead on
 one unanswerable question has spent its budget on nothing.
 
+## Why `plan` became `phasing`
+
+The name lost to the hosts. Plan mode, `/plan`, `EnterPlanMode`, a `Plan` subagent type — the
+word is claimed by the harness in most places this pack runs, and a skill competing with a
+built-in mode for the same word loses every time, including in the user's own head. `phasing`
+matches the gerund set, names the actual unit of value, and collides with nothing.
+
+`plan-work` was the obvious alternative and lost on placement: the skill lives at `skills/work/`,
+where `work/plan-work` reads as a stutter. The artifact keeps its name — the skill is `phasing`,
+the file it writes is still `context/changes/<id>/plan.md` — because the artifact never had the
+collision problem, and renaming it would break every path already written into other skills.
+
+The description still triggers on the word "plan". No other skill in the pack claims it, and it
+is what people actually type.
+
 ## Settled
 
 - **`context/` is obligatory.** Briefs, plans, and decision records go into the repo under
@@ -124,8 +139,21 @@ one unanswerable question has spent its budget on nothing.
 - **Git is approval-gated, not forbidden.** Running a commit, push, or history rewrite needs a
   go-ahead; preparing them — the commit split, the message, the PR description, the branch name
   — is expected work.
-- **No estimation, for now.** `plan` still refuses to estimate. The owner is neutral on it, so it
-  waits for the harvest rule: if "how long" bites in real work, that is when it earns a home.
+- **No estimation, for now.** `phasing` still refuses to estimate. The owner is neutral on it, so
+  it waits for the harvest rule: if "how long" bites in real work, that is when it earns a home.
+
+## Settled, not yet built
+
+- **`questions.md` becomes a real artifact type, written by `shape` as well as `executing`.** An
+  audit found the gate reads that register on every run while only the unattended path ever
+  writes it, so an attended first run reads an absent file and passes — while the brief's
+  `## Open` section says in plain text that a blocking question is unanswered. The decision is
+  that shaping mints the register at brief time, so `q` ids exist from the start and both the
+  gate and ladder rung 7 have one source instead of two. That needs a `shape` template, the
+  brief's `## Open` section retired into it, and the gate reworded. None of it is built yet.
+- Once that lands, `calls.md` still has no reader: a second unattended run over the same change
+  can decide a fork the opposite way, with both entries sitting unreconciled. Same register
+  question, one step later.
 
 ## Open questions
 
@@ -135,5 +163,8 @@ one unanswerable question has spent its budget on nothing.
   the session transcript — but a retrospective nobody invokes is worth nothing, and the pack
   deliberately has no hook to invoke it. If it goes unused for a month, that is the answer.
 - Cross-skill drift is unlinted. Self-sufficiency means the grilling loop is restated inside
-  `shape`, and the delegation contract inside `plan`. When one changes, nothing catches the other
-  going stale.
+  `shape`, and the delegation contract inside `phasing`. When one changes, nothing catches the
+  other going stale. One instance is now resolved by construction rather than by discipline:
+  `executing` owns `questions.md`, and a plan's `blocked` status is a label derived from it that
+  must name the question id. Where two skills share state, making one the truth and the other a
+  derived label is cheaper than keeping both honest — but nothing lints the next such pair.

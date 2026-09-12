@@ -54,7 +54,7 @@ SOFTWARE.
   against it, re-run.
 - `skills/work/delegating` adapts the fix-loop escalation: return findings to the same agent,
   escalate a tier after two failures, cap the rounds, then fix the brief.
-- `skills/work/plan` adapts the plan-reader calibration and the placeholder scan.
+- `skills/work/phasing` adapts the plan-reader calibration and the placeholder scan.
 - `skills/dev/review/references/done.md` adapts the regression-test criterion — reverting the fix
   must turn the test red again.
 
