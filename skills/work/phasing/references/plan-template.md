@@ -56,8 +56,8 @@ Append only. One line per phase completed or plan change:
   changed needs the reason.
 - `blocked` is not a state you choose. It is what is true when an open question blocks the
   current phase, and the status names that question: `blocked (q2)`. Where the change keeps a
-  register of open questions, that register is the truth and this line only labels it — with
-  nothing open, the status is `in progress`. A plan that says blocked without naming what blocks
-  it is a plan nobody else can unblock.
+  register of open questions, that register is the truth and this line only labels it. Nothing
+  open means not blocked: `in progress` while phases remain, `done` once they are all verified.
+  A plan that says blocked without naming what blocks it is a plan nobody else can unblock.
 - Keep phases at three to seven. More means the change should have been split; fewer usually
   means a phase is hiding several.

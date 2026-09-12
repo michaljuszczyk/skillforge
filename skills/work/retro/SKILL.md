@@ -63,15 +63,16 @@ because each message felt reasonable on its own.
 
 ## Routing
 
-Load `references/ladder.md` and place each finding on the lowest rung that fully removes the
-attention. Do not propose a skill where a rule or a check would do.
+Load `references/ladder.md` and give each finding the least machinery that fully removes the
+attention — least, not lowest-numbered; the rungs are an inventory, not a ranking. Do not
+propose a skill where a rule or a check would do, nor prose where the steps never vary.
 
 ## Output
 
 Findings ranked by attention saved, each as:
 
 - **What happened** — with the quote or the command, and roughly what it cost.
-- **Rung** — the mechanism from the ladder, and why not the cheaper one below it.
+- **Rung** — the mechanism from the ladder, and why not the lighter one you rejected.
 - **The change** — the exact text, file, or command being proposed.
 - **Whose hands** — yours to apply, or the user's to set up.
 

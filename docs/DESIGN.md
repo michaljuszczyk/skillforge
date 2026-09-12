@@ -155,6 +155,26 @@ is what people actually type.
   can decide a fork the opposite way, with both entries sitting unreconciled. Same register
   question, one step later.
 
+## The shared-state check
+
+`scripts/check.mjs` gained a pass over the files under `skills/` that reports `context/` paths
+and status values only one file mentions. It exists because cold-context audits kept finding
+state with one side missing — something read and never written, or the reverse — and four of the
+second audit's defects were introduced by the fixes for the first.
+
+**It does not actually determine reader-versus-writer**; the single-file count is a weak proxy.
+It stays silent on any lifecycle declared in prose rather than as an enumeration, which includes
+the one it was written for. A third audit judged it net-negative for that reason, so keeping it
+is a live decision rather than a settled one.
+
+Both halves are heuristics over prose, so they warn and never fail the build. **Errors stay at
+zero; warnings do not.** The nine it currently reports are the open gaps recorded above and in
+Open questions — `questions.md` and `calls.md` known only to `executing`, `opportunities/` and
+`prd-<slug>.md` written by `shape` and read by nothing, and the roadmap's `ready` and `dropped`
+states that no instruction ever writes. A green run here means the gaps are the known ones, not
+that there are none. Silencing it by deleting the check would trade the only mechanical guard
+for a tidier number.
+
 ## Open questions
 
 - Whether nested `skills/work/` and `skills/dev/` directories are discovered by every host's
@@ -165,6 +185,8 @@ is what people actually type.
 - Cross-skill drift is unlinted. Self-sufficiency means the grilling loop is restated inside
   `shape`, and the delegation contract inside `phasing`. When one changes, nothing catches the
   other going stale. One instance is now resolved by construction rather than by discipline:
-  `executing` owns `questions.md`, and a plan's `blocked` status is a label derived from it that
-  must name the question id. Where two skills share state, making one the truth and the other a
-  derived label is cheaper than keeping both honest — but nothing lints the next such pair.
+  `questions.md` is the truth and a plan's `blocked` status is a label derived from it that must
+  name the question id. (`executing` is its only writer today; the settled-not-yet-built item
+  above changes that, and does not change which file is the truth.) Where two skills share
+  state, making one the truth and the other a derived label is cheaper than keeping both honest
+  — and `scripts/check.mjs` now catches the narrow case where one side goes missing entirely.

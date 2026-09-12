@@ -9,6 +9,7 @@ in question.
 skill-name/
 ├── SKILL.md      required
 ├── references/   optional — docs loaded on demand
+├── examples/     optional — filled-in output, when consistency matters
 ├── scripts/      optional — executable code
 └── assets/       optional — templates, images, data
 ```

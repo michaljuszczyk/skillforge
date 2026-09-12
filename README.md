@@ -57,7 +57,7 @@ npx skills add michaljuszczyk/skillforge          # this project
 npx skills add michaljuszczyk/skillforge -g       # all projects
 ```
 
-Claude Code, as a plugin (also gets the optional session hook):
+Claude Code, as a plugin:
 
 ```
 /plugin marketplace add michaljuszczyk/skillforge

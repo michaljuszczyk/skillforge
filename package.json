@@ -17,6 +17,7 @@
     "AGENTS.md",
     "CLAUDE.md",
     "GEMINI.md",
+    "docs/",
     "skills/",
     "addons/",
     ".claude-plugin/",

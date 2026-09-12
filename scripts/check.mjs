@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 // Lints the skill catalog. No dependencies, no config. Run: node scripts/check.mjs
-// Checks what the spec validator does not: routing collisions, reference hygiene, and budgets.
+// Checks what the spec validator does not: routing collisions, reference hygiene, budgets, and
+// state only one file knows about. Errors must stay at zero. Warnings need not: that last pass
+// reports the open gaps recorded in docs/DESIGN.md.
 
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative, basename } from "node:path";
@@ -135,6 +137,65 @@ for (const s of skills) {
 }
 for (const [phrase, names] of owners) {
   if (names.length > 1) fail(`trigger phrase "${phrase}" is claimed by ${names.join(" and ")}`);
+}
+
+// --- catalog-wide: shared state with only one side
+// Audits kept finding state with only one side — a path or a status value that something reads
+// and nothing writes, or the reverse. This pass does NOT determine that: it reports what only
+// one file mentions, which is a weak proxy. Prose heuristics, so they never fail the build, and
+// they miss any lifecycle declared in prose instead of as an enumeration.
+function markdownUnder(dir) {
+  const out = [];
+  for (const entry of readdirSync(dir, { recursive: true })) {
+    const rel = String(entry).replace(/\\/g, "/");
+    if (!rel.endsWith(".md")) continue;
+    const p = join(dir, rel);
+    if (statSync(p).isDirectory()) continue;
+    out.push({ file: `${relative(".", dir).replace(/\\/g, "/")}/${rel}`, text: readFileSync(p, "utf8") });
+  }
+  return out;
+}
+const corpus = skills.flatMap((s) => markdownUnder(s.path));
+console.log("\nshared state");
+
+// an artifact path only one file has ever heard of has a reader or a writer, never both.
+// Naming a path's parent counts as knowing it — readers often cite the folder (`decisions/`) —
+// except for the two generic containers every skill names as a location convention, where it
+// would mean any mention of `context/changes/<id>/` vouched for every file inside it.
+const GENERIC = new Set(["context/changes/<>/", "context/foundation/"]);
+const paths = (text) => (text.match(/context\/[A-Za-z0-9_<>/.-]+/g) ?? [])
+  .map((h) => h.replace(/[.,)`]+$/, "").replace(/<[^>]+>/g, "<>"));
+const sites = new Map();
+for (const { text } of corpus) {
+  for (const p of paths(text)) if (/\.md$/.test(p)) sites.set(p, new Set());
+}
+for (const { file, text } of corpus) {
+  const known = new Set(paths(text));
+  for (const p of sites.keys()) {
+    const parent = p.slice(0, p.lastIndexOf("/") + 1);
+    if (known.has(p) || (!GENERIC.has(parent) && known.has(parent))) sites.get(p).add(file);
+  }
+}
+for (const [p, files] of [...sites].sort()) {
+  if (files.size === 1) warn(`${p} is mentioned only in ${[...files][0]} — check it has both a reader and a writer`);
+}
+
+// a status value nothing outside its own declaration ever names has no writer or no reader
+for (const { file, text } of corpus) {
+  for (const line of text.split(/\r?\n/)) {
+    const decl = line.match(
+      /(?:\*\*Status\*\*|`?status`?)\s*(?::|\bis\b)\s*(?:`([^`\n]*\|[^`\n]*)`|([a-z][^`\n]*\|[^\n]*?)$)/i
+    );
+    if (!decl) continue;
+    const values = (decl[1] ?? decl[2]).split("|")
+      .map((v) => v.replace(/\([^)]*\)/g, "").trim())
+      .filter((v) => /^[a-z]+( [a-z]+)?$/.test(v));
+    if (values.length < 2) continue;
+    for (const v of values) {
+      const elsewhere = corpus.some((c) => c.file !== file && new RegExp("`" + v + "`").test(c.text));
+      if (!elsewhere) warn(`status value "${v}" (${file}) is named in no other file — check it has a writer and a reader`);
+    }
+  }
 }
 if (warnings === 0 && errors === 0) console.log("  ok");
 

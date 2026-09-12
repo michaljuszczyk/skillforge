@@ -30,9 +30,11 @@ plan state is ephemeral; the file is what survives.
 
 ## Writing the plan
 
-- One file: `context/changes/<change-id>/plan.md`, in the repo. The change-id is `NN-slug` with
-  `NN` the next unused number under `context/changes/` — list the directory before choosing, and
-  reuse the id of the brief this plan implements. Create the directories if they do not exist.
+- One file: `context/changes/<change-id>/plan.md`, in the repo. Reuse the id of the brief this
+  plan implements. Where there is no brief, mint `NN-slug` with `NN` the next number claimed by
+  neither `context/changes/` nor the roadmap — a roadmap reserves its ids before any directory
+  exists, so the listing alone will hand you one another change already owns. Create the
+  directories if they do not exist.
 - The only override is the user naming a different location — a plan outside the repo cannot be
   resumed by anyone but you. If the write genuinely fails, use the OS temp dir, print the full
   path, and say the plan is not durable until it is moved into the repo.
@@ -50,14 +52,17 @@ plan state is ephemeral; the file is what survives.
 ## Working the plan
 
 **Find the plan first.** Resuming, or handed a change-id, list `context/changes/*/plan.md` and
-take the one whose `**Status**` is `in progress`. Open with its checklist and its last `Log`
-line so the user can see the state before you touch anything — a `[~]` there is the first thing
-to resolve. Two in progress: name both, ask which.
+take the one whose `**Status**` is `in progress` or `blocked` — the blocked value carries a
+question id after it, so match on the word, not the whole string. Open with its checklist and
+its last `Log` line so the user can see the state before you touch anything — a `[~]` there is
+the first thing to resolve. Two in progress: name both, ask which.
 
 A plan at `blocked` is found the same way and is not a missing plan. Open it, name what the
-status says is blocking, and do not start until that is answered — writing a fresh plan over a
-blocked one buries the question instead of resolving it. Only when no plan file exists at all is
-there no plan yet, and then you write one.
+status says is blocking, and do not start the phases it blocks until that is answered — writing
+a fresh plan over a blocked one buries the question instead of resolving it. Phases that do not
+depend on the answer are still yours to work. When the answer arrives, set the status
+back to `in progress` in the same edit — the label only ever mirrors the register, and nothing
+else clears it. Only when no plan file exists at all is there no plan yet, and then you write one.
 
 1. Re-read the plan file before each phase, not from memory.
 2. **Settle any `[~]` first.** That mark means the phase was underway when a session ended and

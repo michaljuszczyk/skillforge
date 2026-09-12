@@ -25,12 +25,15 @@ Five conditions. All of them, or you do not start:
 | **Non-goals** | The tempting adjacent work, named, so drift is distinguishable from progress |
 | **Verification** | An observable result, with the command or check that produces it |
 | **Boundary** | The files, areas, or systems this change is allowed to touch. The plan carries it, per phase, as `Touches`; a change with no plan takes it from the brief's constraints and non-goals |
-| **Open questions** | None left whose answer would change what gets built. `questions.md` is the register — an entry still `open` against this work fails the gate |
+| **Open questions** | None whose answer would change what gets built. `questions.md` is the register — an `open` entry fails the gate for the phases it blocks and only those; work that does not depend on it still runs |
 
 Missing one? Say which, say what closes it, and stop there. For four of them that is a round of
-shaping; for an open question it is an answer, and resuming past one is how a change quietly
-becomes whatever the last run guessed. Do not fill the gap yourself. An artifact you completed
-from your own inference records your opinion, and the next reader will take it for the owner's.
+shaping; for an open question it is an answer, and building the part it blocks anyway is how a
+change quietly becomes whatever the last run guessed. Building the parts it does not block is
+not resuming past it — a question parked on phase 4 was never a reason to leave phase 5 undone.
+
+Do not fill the gap yourself. An artifact you completed from your own inference records your
+opinion, and the next reader will take it for the owner's.
 
 If the user says to proceed anyway, proceed. State in one line what is unverified, and write it
 into the change folder as an assumption before starting, so the gap outlives the session.
@@ -71,8 +74,9 @@ that does, and say which rung answered and what it said:
    in force, `context/foundation/test-strategy.md` for what is worth proving and what is not.
 5. **The vision** — its priority order breaks ties between competing goods.
 6. **The decision records** — has this argument already been had? Grep
-   `context/foundation/decisions/` for `Standing rule` first: that returns every rule in force
-   without opening a single file.
+   `context/foundation/decisions/` for `Standing rule` with one line of trailing context
+   (`grep -A1`, or the equivalent): the heading is only the marker, the rule is the line beneath
+   it, and a bare match returns every marker and not one rule.
 7. **The blocker register** — `context/changes/<id>/questions.md`. Has this already been asked,
    and has an answer come back since? A question re-derived under fresh wording is a question
    the owner gets asked twice, and on a box where restarts are routine that is forever.
@@ -87,6 +91,11 @@ What keeps the ladder honest:
   Unattended, this is the one case the next section does not let you decide either.
 - A question whose answer changes only *how* it gets built is yours. Decide it, note it in a
   line, carry on. Escalating these is its own failure.
+- When two rungs answer differently, the higher one wins — it was written to govern the lower.
+  Say which two disagreed: a real conflict between artifacts is a defect in them, not a tie for
+  you to break quietly.
+- Blocking is an outcome, not a failure. A fork the whole ladder cannot settle usually means a
+  requirement is wrong or missing, and knowing that is worth more than a confident guess.
 - What the owner answers goes back into the artifact, not only into the conversation. An answer
   that lives in chat has to be asked again next session.
 
@@ -122,6 +131,11 @@ Both hold: decide, record it as provisional, carry on. Either fails: park it.
 from, the alternative rejected, and what would overturn it. The owner has to be able to audit
 the whole run from these entries alone, without reconstructing your reasoning. A provisional
 call nobody wrote down is an ordinary silent assumption wearing a better name.
+
+**Climb the whole ladder before parking anything.** A fork that looks arbitrary from the brief
+is often already settled higher up — by a stack decision, by the vision's priority order, by a
+decision record. Unattended is when that matters most, because nobody is about to supply the
+context you skipped. Park only what survives the full climb.
 
 **Parking a question.** Append it to `context/changes/<id>/questions.md` under a short stable
 id — `q1`, `q2`, the next unused in that file, never renumbered and never reused — with its
