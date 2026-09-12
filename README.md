@@ -1,6 +1,6 @@
 # Skillforge
 
-A small, opinionated skill pack for AI coding agents. Thirteen skills, one always-on file, no runtime.
+A small, opinionated skill pack for AI coding agents. Fourteen skills, one always-on file, no runtime.
 Built to work the same on any agent that reads `AGENTS.md` and the
 [Agent Skills spec](https://agentskills.io/specification) — and to keep working when someone
 copies two of its files into a locked-down repo by hand.
@@ -16,8 +16,9 @@ and what never to do. `CLAUDE.md` and `GEMINI.md` point at it.
 | Skill | Use it for |
 |---|---|
 | `grilling` | Being interrogated round by round until a plan or decision has no unstated assumptions. Writes nothing |
-| `shape` | Turning a raw request into an artifact — brief, roadmap, decision record, or PRD |
+| `shape` | Turning a raw request into an artifact — eight templates, from an opportunity map through brief, roadmap, PRD, vision, stack register, test strategy and decision record |
 | `plan` | Phases with per-phase verification and a durable checklist that survives a new session |
+| `executing` | Carrying a shaped change through to done without drifting from it — gate, ambiguity ladder, closing the loop |
 | `delegating` | Deciding what to hand to a subagent, and briefing it so the result is verifiable |
 | `handoff` | A compact continuation note for the next agent, written to temp |
 | `digest` | A self-contained HTML page for a human to read, keep, and forward |

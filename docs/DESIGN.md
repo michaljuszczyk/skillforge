@@ -6,7 +6,7 @@
 # Why this shape
 
 Skillforge v1 had 21 skills, an always-on gateway hook injecting ~600 words every session and
-after every compaction, five subagent role files, and three plugin manifests. v2 is 13 skills
+after every compaction, five subagent role files, and three plugin manifests. v2 is 14 skills
 and a ~70-line always-on file. This is the reasoning, so it does not get re-added by accident.
 
 ## What the research says
@@ -34,7 +34,7 @@ because routing is a choice the model makes. This is why `lean-coding`, `lean-ou
 `verification-before-completion` are sections of `AGENTS.md` rather than skills.
 
 **Self-sufficiency over composition.** v1's skills opened by invoking a gateway and referencing
-siblings. When a client repo gets two of thirteen skills copied in by hand, those references dangle.
+siblings. When a client repo gets two of fourteen skills copied in by hand, those references dangle.
 Cross-references are suggestions, never dependencies.
 
 **Artifacts are templates.** `roadmap`, `stack`, and `to-prd` were skills competing with `shape`
@@ -68,14 +68,52 @@ Two deliberate departures from that source:
 2. Environment facts (OS, MCP servers, local tooling) are **not** in this file. The repo installs
    on several machines; machine facts belong to the machine's own config layer.
 
-## Next version
+## The execution skill
 
-**`development-flow`** — a `skills/dev/` skill that sequences `plan` → `tdd`/direct → `debugging`
-→ `review` with gates, the way `shape` sequences grilling into an artifact. Owner has a specific
-design in mind; it is not built yet.
+The skill reserved here as `development-flow` landed in v2.2 as `skills/work/executing`. Two
+departures from the reserved design:
 
-This is why `tdd`, `debugging`, and `review` are independent tools with no orchestration between
-them. Do not add cross-skill sequencing to them — that is this skill's job when it lands.
+It is in `work/`, not `dev/`. The gate, the ambiguity ladder and the loop-closing are the same
+whether the change is code or not, and a `dev/` placement would have left non-code work with no
+execution discipline at all.
+
+Its core is the **gate**, not the sequence. Sequencing is orchestration, which hosts already do
+and which would have put it in direct trigger competition with `plan`. What no host supplies is
+the refusal to start on a hollow artifact, the ladder that resolves ambiguity from the written
+record instead of from inference, and the rule that the record gets updated when work lands.
+The sequence is present, but each step is a gate with named evidence, not a dispatch table.
+
+This is still why `tdd`, `debugging`, and `review` are independent tools. `executing` names the
+gate each step has to pass and defers to whichever skill is installed for it; it does not call
+them and does not assume they exist.
+
+The ladder is what makes `context/foundation/vision.md` load-bearing rather than decorative: it
+is rung 5, the tie-breaker between goods already agreed, and it is explicitly barred from
+authorising new scope.
+
+### Why unattended is declared, not detected
+
+The mode has to be switched on from outside — by the invocation, or by an `Execution mode:
+unattended` line in the always-on file — and everything else, ambiguity included, is attended.
+Letting the agent detect it was the original draft and it was wrong in the dangerous direction:
+an agent that concludes from a missing question tool that nobody is watching removes the owner
+from a run the owner was in fact watching, and the provisional-call machinery then fires on
+supervised work. A wrongly-attended run costs one unnecessary stop. A wrongly-unattended run
+spends the owner's authority without asking.
+
+### Why the unattended rule is not a confidence threshold
+
+The obvious design for an executor with no reachable owner is "decide when you are N% sure".
+It was rejected. A self-assigned probability cannot be audited after the run, and models are
+poorly calibrated at producing one, so the threshold would move to fit whatever the model
+already wanted to do. The two conditions that replaced it — **grounded** (name the rung, quote
+the line) and **bounded** (being wrong costs no more than redoing this change) — are both
+checkable by someone reading the run afterwards, which is the only reader who matters.
+
+The asymmetry is deliberate. The ladder gains an autonomous path; the gate does not. A hollow
+artifact is the one input inference cannot repair, and unattended is exactly when nobody is
+watching for it. Parking rather than halting comes from the same place: a run that stops dead on
+one unanswerable question has spent its budget on nothing.
 
 ## Settled
 

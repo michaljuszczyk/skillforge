@@ -1,6 +1,6 @@
 ---
 name: shape
-description: "Turn a raw request into a written artifact — a change brief, an epic roadmap, a decision record, or a PRD — by resolving the open decisions first. Use before planning or building when the work is not yet crisp: vague scope, unclear goal, competing options, or an epic that has not been broken down. Triggers on shape, scope, frame, clarify, brief, roadmap, break an initiative into changes, ADR, decide between, or write a PRD."
+description: "Turn a raw request into a written artifact — a change brief, an epic roadmap, a decision record, a PRD, or a project vision — by resolving the open decisions first. Use before planning or building when the work is not yet crisp: vague scope, unclear goal, competing options, or an epic that has not been broken down. Triggers on shape, scope, frame, clarify, brief, roadmap, vision, build or buy, test strategy, break an initiative into changes, ADR, decide between, or write a PRD."
 ---
 
 # Shape
@@ -12,14 +12,21 @@ second, stop there — shaping does not plan phases and does not implement.
 
 | The request | Load | Writes |
 |---|---|---|
+| It is not yet clear that anything should be built at all | `references/opportunity.md` | an opportunity map |
 | A single change is unclear in scope or goal | `references/brief.md` | a change brief |
 | A big initiative needs breaking into changes | `references/roadmap.md` | a dependency-ordered change index |
 | A technical choice needs to be made or recorded | `references/decision.md` | a decision record |
 | Product requirements need stating | `references/prd.md` | a PRD |
+| The project direction is unwritten, or keeps getting re-litigated | `references/vision.md` | a vision |
+| A new project or standalone feature needs its stack chosen | `references/tech-stack.md` | a stack register |
+| What is worth testing has never been decided | `references/test-strategy.md` | a test strategy |
 
 Load exactly one template, and only once you are ready to write. Do not load any template to
 route, to ask questions, or to answer a clarification. Read `examples/brief.md` or
 `examples/roadmap.md` only when the shape of the output is unclear.
+
+If `context/foundation/vision.md` already exists, read it before asking anything — it settles
+some questions outright, and an answer that contradicts it is worth naming out loud.
 
 If none of the four fits, say so and write plain structured prose instead — a forced template
 produces a worse document than no template. Do not invent a new document type mid-task; if the

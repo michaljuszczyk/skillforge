@@ -21,7 +21,11 @@ Technical, product, or process limits that are not negotiable: compatibility, de
 existing patterns to follow, things that must not change.
 
 ## Risks and unknowns
-What could make this fail or take twice as long. Mark each `verified:` or `assumption:`.
+What could make this fail or take twice as long. Mark each `verified:` or `assumption:`. Answer
+these three rather than listing whatever comes to mind first:
+- **Pre-mortem** — this shipped and caused an incident. What was it?
+- **Devil's advocate** — the strongest case for not doing this at all, or doing it differently.
+- **When it breaks** — it fails in production at 3am. What does the user see, and who finds out?
 
 ## Verification
 The observable behavior that proves it worked. A command, a user-visible result, a metric.

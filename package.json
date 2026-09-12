@@ -1,7 +1,7 @@
 {
   "name": "skillforge",
-  "version": "2.1.0",
-  "description": "Thirteen skills and one always-on working agreement for AI coding agents. Provider-independent, zero runtime.",
+  "version": "2.2.0",
+  "description": "Fourteen skills and one always-on working agreement for AI coding agents. Provider-independent, zero runtime.",
   "keywords": [
     "skills",
     "agent-skills",

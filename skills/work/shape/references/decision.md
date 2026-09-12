@@ -37,6 +37,11 @@ The option chosen, and the reason it beat the others. Name the deciding factor.
 ## Consequences
 What this makes easy, what it makes hard, and the cost being accepted knowingly.
 
+## Standing rule
+The one imperative sentence this imposes on future work — what someone should now do, or stop
+doing, without having to read the rest. Omit the heading entirely when the decision imposes
+nothing; never write a filler rule.
+
 ## Revisit when
 The condition that should reopen this — a scale threshold, a dependency change, a deadline.
 ```
@@ -45,6 +50,9 @@ The condition that should reopen this — a scale threshold, a dependency change
 
 - At least two real options. A single option is not a decision, it is a note.
 - Every option gets its downside stated. An option with no cost has not been understood.
-- A project's stack is a set of decisions, not a list of libraries: prefer several small records
-  over one "our stack" document.
+- A project's stack belongs in `tech-stack.md` — the register of what was chosen and what forced
+  it. Write a decision record only for the stack choices that were genuinely contested.
 - Never delete a superseded record. Mark it superseded and link forward.
+- `Standing rule` is what makes this directory readable at speed: one grep across
+  `context/foundation/decisions/` returns every rule in force without opening a file. Keep it to
+  one sentence, imperative, and true on its own out of context.
