@@ -25,9 +25,9 @@ A retro from memory is you grading your own recollection. Get the transcript.
   the newest file is regularly somebody else's work.
 - Other hosts differ and some keep nothing. If no transcript is reachable, say so plainly, run
   from the live conversation, and label the result memory-based.
-- The transcript does not hold everything. Add `git log` for the period, the plan checklist if
-  one exists, the test or CI state, and **the user's own account of where it dragged** — ask for
-  it, you cannot derive it.
+- The transcript does not hold everything. Add `git log` for the period, the plan checklist and
+  the brief's `## Closing` where they exist, the test or CI state, and **the user's own account
+  of where it dragged** — ask for it, you cannot derive it.
 - Scale the depth and say which you chose: *quick* for a short session (top five findings only),
   *standard*, or *deep* for a long or expensive one — deep means reading the subagent logs too.
 

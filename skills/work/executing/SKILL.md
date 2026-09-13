@@ -36,7 +36,8 @@ Do not fill the gap yourself. An artifact you completed from your own inference 
 opinion, and the next reader will take it for the owner's.
 
 If the user says to proceed anyway, proceed. State in one line what is unverified, and write it
-into the change folder as an assumption before starting, so the gap outlives the session.
+into the brief's `## Risks and unknowns` as an `assumption:` — or the plan's `## Unknowns` when
+there is no brief — before starting, so the gap outlives the session.
 
 **Skip the gate** for work that is trivial and fully specified — a typo, a rename, a one-line
 fix. Gating those is ceremony. Anything with a second step has a second reading.
@@ -181,6 +182,9 @@ A change is not done when it works. It is done when the record says what is now 
 - Anything the work proved wrong in the brief: amended there, not left to mislead the next
   reader.
 - What you deliberately did not do, in one line.
+- Once the change is done, the brief's `## Closing`: the result with the evidence above, the
+  deviations, what was left in place, and what was learned. The report ends with the session;
+  the brief does not. A run that stops blocked has not closed the change and leaves it unwritten.
 - Every provisional call made without an owner, from `calls.md`, listed together so they can be
   reviewed in one pass — or confirmed, which is what turns the good ones into decision records.
 - Every question still `open` in `questions.md`, by id, with what it blocks. When phases came

@@ -139,6 +139,16 @@ is what people actually type.
 - **Git is approval-gated, not forbidden.** Running a commit, push, or history rewrite needs a
   go-ahead; preparing them — the commit split, the message, the PR description, the branch name
   — is expected work.
+- **What a change produced goes into its brief, not a file of its own.** A project working
+  through spikes and investigations, without `executing`, improvised a `status.md` for a
+  finished change. It proved the most useful file for picking the work up, and the next agent
+  then used one as a second progress file beside `plan.md`. So the record is a slot rather than
+  a file: every brief carries a `## Closing` heading from the start, whose placeholder names what
+  goes there, so the instruction reaches whoever closes the change by whatever route, and every
+  reader that already opens the brief finds it. It is not `## Outcome`, which the roadmap already
+  uses for the intended end state. `shape` also lists what each `context/` file holds and allows
+  no other file in a change directory — restating other skills' files there is accepted
+  duplication, because the confusion it prevents is between files no single skill owns.
 - **No estimation, for now.** `phasing` still refuses to estimate. The owner is neutral on it, so
   it waits for the harvest rule: if "how long" bites in real work, that is when it earns a home.
 
@@ -169,7 +179,7 @@ is a live decision rather than a settled one.
 
 Both halves are heuristics over prose, so they warn and never fail the build. **Errors stay at
 zero; warnings do not.** The nine it currently reports are the open gaps recorded above and in
-Open questions — `questions.md` and `calls.md` known only to `executing`, `opportunities/` and
+Open questions — `questions.md` and `calls.md` written only by `executing`, `opportunities/` and
 `prd-<slug>.md` written by `shape` and read by nothing, and the roadmap's `ready` and `dropped`
 states that no instruction ever writes. A green run here means the gaps are the known ones, not
 that there are none. Silencing it by deleting the check would trade the only mechanical guard

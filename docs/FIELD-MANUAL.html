@@ -386,7 +386,9 @@
       <h2>What the artifacts are</h2>
       <p class="sec-note">The skills are how; these are what survives. <code>foundation/</code> is
         standing context, rarely written and often read. <code>changes/&lt;id&gt;/</code> is one unit of
-        work, where <code>&lt;id&gt;</code> is <code>NN-slug</code> — the same id the roadmap row carries.</p>
+        work, where <code>&lt;id&gt;</code> is <code>NN-slug</code> — the same id the roadmap row carries.
+        Each kind of state has one home: status in the roadmap row, progress in the plan's checklist,
+        what the change produced in the brief's closing. A change directory holds no other file.</p>
     </div>
 
     <div class="amap">
@@ -402,7 +404,7 @@
       </div>
       <div class="amap-col">
         <h3>context/changes/&lt;id&gt;/ — one change</h3>
-        <div class="art"><div class="art-p">brief.md</div><div class="art-d">Problem, goal, non-goals, constraints, risks, and the verification that proves it worked. Non-goals and verification are mandatory.</div><div class="art-w">shape</div></div>
+        <div class="art"><div class="art-p">brief.md</div><div class="art-d">Problem, goal, non-goals, constraints, risks, and the verification that proves it worked. Non-goals and verification are mandatory. A <code>## Closing</code> section waits from the start and is written once, when the change closes by any route: result, deviations, what was left in place, what was learned.</div><div class="art-w">shape · whoever closes it</div></div>
         <div class="art"><div class="art-p">plan.md</div><div class="art-d">Phases, each with its own runnable verification, plus the progress checklist that is the durable state.</div><div class="art-w">phasing</div></div>
         <div class="art"><div class="art-p">questions.md</div><div class="art-d">Parked blocking questions under stable ids (<code>q1</code>, <code>q2</code>), each with status and what it holds up.</div><div class="art-w">executing</div></div>
         <div class="art"><div class="art-p">calls.md</div><div class="art-d">Provisional decisions made when no owner was reachable — the question, the answer taken, the rung it came from, what would overturn it.</div><div class="art-w">executing</div></div>
@@ -481,7 +483,7 @@
         <div class="step-n">7</div>
         <div class="step-b">
           <div class="step-t">Judge, then close the loop<span class="via">review → retro</span></div>
-          <div class="step-d">Review against the brief rather than against taste. Then the record says what is now true: roadmap status updated, evidence attached, anything durable and surprising written as a decision record, and anything the work proved wrong amended in the brief.</div>
+          <div class="step-d">Review against the brief rather than against taste. Then the record says what is now true: roadmap status updated, evidence attached, the brief's closing written, anything durable and surprising written as a decision record, and anything the work proved wrong amended in the brief.</div>
           <div class="gate"><b>gate</b> every requirement traced, every non-goal still undone</div>
         </div>
       </div>

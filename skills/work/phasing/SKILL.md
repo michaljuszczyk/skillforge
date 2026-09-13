@@ -77,7 +77,7 @@ else clears it. Only when no plan file exists at all is there no plan yet, and t
 6. Never mark an item `[x]` you have not verified this session.
 7. When the last phase is `[x]`, set the plan's `**Status**` to `done` in the same edit. It is
    the only thing that takes a finished plan out of the resume lookup above, and nothing else
-   writes it.
+   writes it. Where the change has a brief with a `## Closing` heading, that is when to write it.
 
 ## Splitting work
 

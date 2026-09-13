@@ -64,7 +64,8 @@ Artifacts live in the repo, always, so they outlive the session and the agent:
 the next number claimed by neither `context/changes/` nor the roadmap. Read both before
 choosing: a roadmap reserves its ids at the moment it is written and creates no directories
 until each change is briefed, so the directory listing alone will hand you an id another change
-already owns. Never reuse a number and never write into an existing change's directory.
+already owns. Never reuse a number and never shape a new change into an existing change's
+directory.
 Briefing a roadmap entry keeps the id that entry already carries.
 
 Create the directories if they do not exist. The only override is the user naming a different
@@ -74,6 +75,28 @@ stops being the shared record it exists to be.
 If the write genuinely fails — read-only checkout, refused permission — write to the OS temp dir
 (`%TEMP%`, else `$TMPDIR`, else `/tmp`), print the full path, and say plainly that the artifact
 is not durable until someone moves it into the repo. Never continue as though it had been saved.
+
+**What each file holds.** Every way of working through this pack meets these files, whichever
+skills wrote them. Each kind of state has one home, and a label elsewhere only mirrors it:
+
+| Under `context/` | Holds | Never |
+|---|---|---|
+| `foundation/roadmap.md` | one status per change, in its row | how far a change has got |
+| `foundation/vision.md` | direction, and the ranked priority order that breaks ties | new scope, dates, or change ids |
+| `foundation/tech-stack.md` | the stack in force, and the constraint that forced each choice | a preference presented as forced |
+| `foundation/test-strategy.md` | ranked risks, which test level holds each, what is left untested | how to write a particular test |
+| `foundation/opportunities/<slug>.md` | build, buy, thin complement, or wait — before any brief | a change's scope |
+| `foundation/prd-<slug>.md` | product intent, when that is what is unclear | the technical approach |
+| `foundation/decisions/` | one contested, hard-to-reverse choice each | a change's working notes |
+| `changes/<id>/brief.md` | the agreed intent, questions raised while shaping in `## Open`, and once the change closes, its `## Closing` | progress |
+| `changes/<id>/plan.md` | phases, with the checklist as the only progress state; its `**Status**` only labels it for resuming | what the change produced |
+| `changes/<id>/questions.md` | blocking questions parked during the work, under stable ids, each with its status | calls already made |
+| `changes/<id>/calls.md` | calls made when no owner could be asked | open questions |
+
+Write no other file into a change's directory. Content that fits none of these belongs in the
+one it is closest to, or it is scratch and goes to the OS temp dir. A `status.md`, `notes.md`,
+or `log.md` beside the brief becomes a second record of the same change, and the next reader
+cannot tell which one is true.
 
 ## Artifact rules
 
@@ -90,5 +113,6 @@ is not durable until someone moves it into the repo. Never continue as though it
   needs no artifact and do the work.
 - Do not plan phases, estimate, or write code here.
 - Do not produce two artifacts in one pass. One request, one document.
-- Do not pad. A one-paragraph brief that answers the questions beats a filled-in template.
+- Do not pad. A one-paragraph brief that answers the questions beats a filled-in template — it
+  still ends with the `## Closing` heading.
 - Close by naming the artifact path, the open questions, and the natural next step in one line.

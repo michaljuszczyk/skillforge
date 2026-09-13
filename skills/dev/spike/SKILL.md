@@ -37,8 +37,8 @@ not use for work you already know is feasible: just build it.
 6. **No polish.** No tests, no error handling, no naming care, no abstraction, no types beyond
    what makes it run. Resist every instinct that applies to production code.
 7. **Surface the state.** Print what you learn as you go — the output is the deliverable.
-8. **Capture the answer, then delete the code.** The answer goes into a brief or a decision
-   record. The code goes in the bin.
+8. **Capture the answer, then delete the code.** The answer goes into a brief — its
+   `## Closing`, when the spike was the change — or a decision record. The code goes in the bin.
 
 ## Reporting
 

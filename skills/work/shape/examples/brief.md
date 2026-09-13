@@ -35,4 +35,8 @@ appears.
 
 ## Open
 - Which decimal separator do ops actually need? (ops lead)
+
+## Closing
+_Written once, when this change closes, in the same edit as its roadmap status: result
+against the goal, deviations, what was left in place, what was learned._
 ```
